@@ -1,6 +1,6 @@
 # Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks
 
-This repository contains the code, compact source data, frozen identifiers, and figure scripts supporting the manuscript “Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks.” The model is a fixed-N spatial directed graph in which every source retains at most q neighbors ranked by projection on a quenched local direction.
+This is the public reproducibility repository for the manuscript “Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks.” It contains compact source data, frozen manifests, analysis code, and figure-reproduction scripts supporting the results reported in the manuscript. The model is a fixed-N spatial directed graph in which every source retains at most q neighbors ranked by projection on a quenched local direction.
 
 ## Repository scope
 
@@ -82,4 +82,6 @@ The manuscript has not been assigned a publication DOI. Citation metadata for th
 
 ## License
 
-No software license has been selected for this submission snapshot. Reuse permissions remain with the authors until a license is chosen.
+Source code is licensed under the BSD 3-Clause License. Data and documentation are licensed under CC BY 4.0 unless otherwise noted. See `LICENSE` and `LICENSE-DATA`.
+
+Third-party components, including embedded fonts, remain subject to their original licenses and are not relicensed by this repository.

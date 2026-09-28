@@ -1,6 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite the accompanying manuscript and this software record."
+message: "If you use this repository, please cite the accompanying manuscript and this software record. Source code is licensed under BSD-3-Clause; data and documentation are licensed under CC-BY-4.0."
 type: software
+license: "BSD-3-Clause"
+license-url: "https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/blob/main/LICENSE"
 title: "Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks"
 authors:
   - family-names: "Zhang"
