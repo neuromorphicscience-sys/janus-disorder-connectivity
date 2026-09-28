@@ -19,7 +19,8 @@ Audit date: 2026-09-28
 - Isolated virtual-environment package install: PASS
 - Archive and source-data validation: PASS (22 hashed source files)
 - Lightweight test suite: PASS (15 tests)
-- Clean committed-snapshot clone install: PASS (commit `1b4406881368066346baf28402b11f40df17e3ec`)
+- Clean committed-snapshot clone install: PASS
+- Windows Git clean clone with `core.autocrlf=true`: PASS under the repository LF policy
 
 ## Figure reproduction
 
@@ -43,6 +44,6 @@ The PDFs use embedded TrueType fonts. Generated files are intentionally ignored 
 ## Repository size
 
 - Largest tracked file: `data/figure1/schematic_source.png` (1,212,684 bytes)
-- Total tracked content: 3401714 bytes
+- Total tracked content: 3401915 bytes
 
 Large production graph arrays, transient caches, internal reviews, and exploratory material are outside this compact public release.
