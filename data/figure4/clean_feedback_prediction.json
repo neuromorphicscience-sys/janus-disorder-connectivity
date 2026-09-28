@@ -1,0 +1,16 @@
+{
+  "L": 128.0,
+  "q": 7,
+  "R": 1.0,
+  "sigma": 24.0,
+  "half_plane_line_term": 896.0,
+  "side_corner_correction": 10.816242111356935,
+  "high_density_square_prediction": 906.8162421113569,
+  "poisson_geometric_integral": 907.0064531358217,
+  "fixed_geometric_integral": 907.0064516788184,
+  "n_frozen": 24,
+  "observed_mean_F": 906.75,
+  "observed_sd_F": 12.424554930354299,
+  "observed_sem_F": 2.5361516550457517,
+  "fitted_parameters": 0
+}

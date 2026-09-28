@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.numba_cache/
+.venv/
+build/
+dist/
+*.egg-info/
+figures/generated/*.pdf
+figures/generated/*.png
+figures/generated/*.csv
+!figures/generated/README.md

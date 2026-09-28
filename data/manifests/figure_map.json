@@ -1,0 +1,45 @@
+{
+  "Figure 1": {
+    "inputs": [
+      "data/figure1/restoration_size_summary.csv",
+      "data/figure1/restoration_W_scan.csv",
+      "data/figure1/bulk_marginal_validation.csv",
+      "data/figure1/bulk_fixedN_predictions.csv",
+      "data/figure1/schematic_source.png"
+    ],
+    "script": "scripts/reproduce_fig1.py",
+    "output": "figures/generated/fig1.pdf"
+  },
+  "Figure 2": {
+    "inputs": [
+      "data/figure2/paired_reassignment.csv",
+      "data/figure2/displacement_histogram.csv",
+      "data/figure2/edge_length_quantiles.csv"
+    ],
+    "script": "scripts/reproduce_fig2.py",
+    "output": "figures/generated/fig2.pdf"
+  },
+  "Figure 3": {
+    "inputs": [
+      "data/figure3/filtered_W_scan.csv",
+      "data/figure3/low_order_scaling.csv",
+      "data/figure3/depth_summary.csv",
+      "data/figure3/direction_pairs.csv",
+      "data/figure3/direction_summary.csv",
+      "data/figure3/profile_occupancy_summary.csv",
+      "data/figure3/internal_recurrence_summary.csv"
+    ],
+    "script": "scripts/reproduce_fig3.py",
+    "output": "figures/generated/fig3.pdf"
+  },
+  "Figure 4": {
+    "inputs": [
+      "data/figure4/boundary_depth_prediction.csv",
+      "data/figure4/clean_feedback_counts.csv",
+      "data/figure4/clean_feedback_prediction.json",
+      "data/figure4/boundary_deletion_checks.csv"
+    ],
+    "script": "scripts/reproduce_fig4.py",
+    "output": "figures/generated/fig4.pdf"
+  }
+}

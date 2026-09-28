@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the accompanying manuscript and this software record."
+type: software
+title: "Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks"
+authors:
+  - family-names: "Zhang"
+    given-names: "Jinhao"
+  - family-names: "Meng"
+    given-names: "Jialin"
+  - family-names: "Wang"
+    given-names: "Tianyu"
+version: "1.0-submission"
+date-released: "2026-09-28"
+repository-code: "https://github.com/neuromorphicscience-sys/janus-disorder-connectivity"
