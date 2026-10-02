@@ -66,5 +66,6 @@
   "data/supplemental_final/source_tableS1_print.csv": "7970a615ebb86196d10dd8dcbc82ccda09aecc6d8185a0b67a364a014caeda2e",
   "data/supplemental_final/source_tableS2.csv": "102186046369445eeb777850201d2ab5ade84e134d66cf63dad86297095a639d",
   "data/supplemental_final/source_tableS3.csv": "002a76860a12b01148bc0fe6d846a54c50625f34d2dbb494f4320b53963c71a7",
-  "data/supplemental_final/deletion_representative_placement.csv": "aa0512b0e270f29b578cf3ab243eebed1b66d524095ad626d1774d0e5272657b"
+  "data/supplemental_final/deletion_representative_placement.csv": "aa0512b0e270f29b578cf3ab243eebed1b66d524095ad626d1774d0e5272657b",
+  "data/figure1/schematic_vector_definition.json": "ca18b839e1db1874370bcbd97ac273b2982b431af642035852adbba0266f4af2"
 }

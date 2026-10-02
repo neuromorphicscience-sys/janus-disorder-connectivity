@@ -1,70 +1,33 @@
 """Reproduce manuscript Figure 1 from supplied source data."""
 from pathlib import Path
+import json
 import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, FancyArrowPatch, Rectangle
 from matplotlib.lines import Line2D
-from PIL import Image
-from _figure_common import DATA, COLORS as C, apply_style, panel, save
+from matplotlib.ticker import AutoMinorLocator
+from _figure_common import DATA, OUTPUT, COLORS as C, apply_style, panel, save
+from _fig1_schematic import draw_schematic
 
 apply_style()
-plt.rcParams.update({"legend.fontsize": 7, "lines.linewidth": 1.15, "lines.markersize": 3.5})
+plt.rcParams.update({"legend.fontsize": 7, "lines.linewidth": 1.15, "lines.markersize": 3.5,
+                    "axes.linewidth": .7, "xtick.major.size": 3, "ytick.major.size": 3,
+                    "xtick.minor.size": 1.7, "ytick.minor.size": 1.7,
+                    "xtick.major.width": .65, "ytick.major.width": .65,
+                    "xtick.minor.width": .5, "ytick.minor.width": .5,
+                    "xtick.major.pad": 3, "ytick.major.pad": 3,
+                    "axes.labelpad": 2, "legend.frameon": False, "legend.handlelength": 1.6})
 styles = [(64, "o", "-"), (128, "s", "--"), (256, "^", "-."), (512, "D", ":")]
 
-reference_path = DATA / "figure1" / "schematic_source.png"
-reference = np.asarray(Image.open(reference_path).convert("RGB"))
-reference_display = reference.copy()
-rgb = reference.astype(np.int16)
-blue = (rgb[..., 2] - rgb[..., 0] > 8) & (rgb[..., 1] - rgb[..., 0] > 4) & (rgb[..., 2] > 100)
-yy, xx = np.indices(blue.shape)
-removed = blue & (
-    ((xx >= 195) & (xx <= 330) & (yy >= 165) & (yy <= 365))
-    | ((xx >= 1540) & (xx <= 1870) & (yy >= 325) & (yy <= 525))
-)
-reference_display[removed] = np.array([253, 253, 253], dtype=np.uint8)
-ref_h, ref_w = reference.shape[:2]
-canvas_w = 1800.0
-canvas_h = canvas_w * ref_h / ref_w
-
+definition = json.loads((DATA / "figure1" / "schematic_vector_definition.json").read_text())
+ref_w, ref_h = definition["canvas"]
 fig = plt.figure(figsize=(86 / 25.4, 90 / 25.4))
 a = fig.add_axes([1 / 86, 52 / 90, 84 / 86, (84 * ref_h / ref_w) / 90])
 b = fig.add_axes([0.155, 9.96 / 90, 0.355, 33.615 / 90])
 c = fig.add_axes([0.665, 9.96 / 90, 0.315, 33.615 / 90])
-a.imshow(reference_display, extent=(0, canvas_w, canvas_h, 0), interpolation="none", zorder=0)
-a.set(xlim=(0, canvas_w), ylim=(canvas_h, 0))
-a.set_aspect("equal")
-a.axis("off")
-masks = [
-    (0, 5, 58, 84), (0, 125, 395, 525), (406, 251, 603, 347),
-    (775, 65, 925, 129), (1145, 292, 1265, 351), (151, 533, 269, 587),
-    (110, 590, 311, 652), (744, 590, 985, 652), (1416, 590, 1725, 652),
-]
-for x0, y0, x1, y1 in masks:
-    a.add_patch(Rectangle((x0, y0), x1 - x0, y1 - y0, facecolor="#FDFDFD", edgecolor="none", zorder=1))
-a.text(17, 28, "(a)", ha="left", va="top", fontsize=8.5, fontweight="bold", zorder=2)
-source = (205, 330)
-selected = [(309, 246), (351, 330), (302, 430)]
-unselected = [(66, 216), (38, 302), (69, 416), (157, 476)]
-a.add_patch(Circle(source, 184, fill=False, edgecolor="#AEB4BA", linewidth=0.85, linestyle=(0, (4, 4)), zorder=2))
-for target in unselected:
-    a.plot([source[0], target[0]], [source[1], target[1]], color="#BCC1C6", linewidth=0.65, linestyle=(0, (3, 3)), zorder=2)
-for target in selected:
-    a.add_patch(FancyArrowPatch(source, target, arrowstyle="-|>", mutation_scale=6.5, linewidth=1.15, color=C["neutral"], zorder=3, shrinkA=2.2, shrinkB=1.8))
-for target in unselected + selected:
-    a.add_patch(Circle(target, 12, facecolor="#F2F2F2", edgecolor="#555A5E", linewidth=0.85, zorder=4))
-a.add_patch(Circle(source, 16, facecolor=C["neutral"], edgecolor=C["neutral"], zorder=5))
-a.add_patch(FancyArrowPatch((145, 198), (278, 198), arrowstyle="-|>", mutation_scale=9, linewidth=2.0, color=C["direction"], zorder=4))
-a.text(211, 168, r"$\mathbf{e}_i$", ha="center", va="center", fontsize=6.5, color=C["direction"], zorder=4)
-a.text(502, 298, "same\ntop-$q$ rule", ha="center", va="center", fontsize=7, linespacing=1.12, zorder=2)
-a.text(848, 99, r"$W=0$", ha="center", va="center", fontsize=7.5, zorder=2)
-a.text(1205, 324, r"$W\uparrow$", ha="center", va="center", fontsize=7.5, zorder=2)
-a.text(210, 560, r"$q=3$", ha="center", va="center", fontsize=7, zorder=2)
-a.text(210, 620, "local rule", ha="center", va="center", fontsize=7.3, zorder=2)
-a.text(860, 620, "fragmented", ha="center", va="center", fontsize=7.3, zorder=2)
-a.text(1570, 620, "restored GSCC", ha="center", va="center", fontsize=7.3, zorder=2)
+geometry = draw_schematic(a, definition, C)
 
 panel(b, "b")
 panel(c, "c")
@@ -93,6 +56,19 @@ c.set(xlabel=r"$W$", ylabel="directional order", xlim=(0.748, 0.904), ylim=(0.59
 c.legend(handles=[
     Line2D([], [], color=C["local_alignment"], ls="--", marker="s", mfc="white", ms=3.3, label=r"$A_{\rm loc}$"),
     Line2D([], [], color=C["drift"], ls="--", marker="o", mfc="white", ms=3.3, label=r"$D$"),
-], loc="center left", bbox_to_anchor=(0.04, 0.63), fontsize=7.0, handlelength=1.6, handletextpad=0.4, labelspacing=0.25, borderpad=0.08, frameon=False)
+], loc="center left", bbox_to_anchor=(0.04, 0.63), fontsize=7.0, handlelength=1.6, handletextpad=0.4, labelspacing=0.25, borderpad=0.08, borderaxespad=0, frameon=False)
 
+for ax in [b, c]:
+    ax.xaxis.set_minor_locator(AutoMinorLocator(2))
+    ax.yaxis.set_minor_locator(AutoMinorLocator(2))
+fig.savefig(OUTPUT / "fig1.svg")
 save(fig, 1)
+
+width_mm, height_mm = definition["size_mm"]
+figa = plt.figure(figsize=(width_mm / 25.4, height_mm / 25.4))
+axa = figa.add_axes([0, 0, 1, 1])
+draw_schematic(axa, definition, C)
+for extension in ["pdf", "svg", "png"]:
+    figa.savefig(OUTPUT / f"fig1a.{extension}", dpi=600)
+plt.close(figa)
+(OUTPUT / "fig1a_geometry_checks.json").write_text(json.dumps(geometry, indent=2) + "\n")

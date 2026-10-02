@@ -5,10 +5,11 @@
       "data/figure1/restoration_W_scan.csv",
       "data/figure1/bulk_marginal_validation.csv",
       "data/figure1/bulk_fixedN_predictions.csv",
-      "data/figure1/schematic_source.png"
+      "data/figure1/schematic_vector_definition.json"
     ],
     "script": "scripts/reproduce_fig1.py",
-    "output": "figures/generated/fig1.pdf"
+    "output": "figures/generated/fig1.pdf",
+    "schematic_drawing_code": "scripts/_fig1_schematic.py"
   },
   "Figure 2": {
     "inputs": [

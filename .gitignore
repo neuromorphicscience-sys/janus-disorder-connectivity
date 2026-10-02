@@ -8,6 +8,8 @@ dist/
 *.egg-info/
 figures/generated/*.pdf
 figures/generated/*.png
+figures/generated/*.svg
+figures/generated/*_geometry_checks.json
 figures/generated/*.csv
 !figures/generated/README.md
 
