@@ -149,7 +149,7 @@ def s5():
  for ax in axs.flat:ax.set(xlabel=r'$\ell/R$',xticks=range(4),xticklabels=['1','2','4','8'],xlim=(-.5,3.5))
  save(fig,5)
 def s6():
- nodes=read('classifier_toy_nodes');edges=read('classifier_toy_edges');v=read('source_figS6');fig,axs=canvas(h=95)
+ nodes=read('classifier_toy_nodes');edges=read('classifier_toy_edges');fig,axs=canvas(1,2,h=48)
  for ax,name,col in [(axs[0,0],'B_pure_order1',G1),(axs[0,1],'C_reciprocal_order2',G2)]:
   n=nodes[nodes.toy.eq(name)].sort_values('node');ys=n.progress_y.to_numpy();xs=np.array([0,0]) if len(n)==2 else np.array([0,1,0,1]);pos={i:(xs[i],ys[i]) for i in range(len(n))}
   for r in edges[edges.toy.eq(name)].itertuples():
@@ -158,11 +158,7 @@ def s6():
   ax.scatter(xs,ys,s=95,c='white',edgecolors='#111111',zorder=3)
   for i,(x,y) in enumerate(zip(xs,ys)):ax.text(x,y,str(i),ha='center',va='center',fontsize=8,zorder=4)
   ax.set(xlim=(-.6,.6) if len(n)==2 else (-.35,1.35),ylim=(ys.min()-.5,ys.max()+.5));ax.set_axis_off();ax.text(.5,.02,'Order 1' if len(n)==2 else 'Order 2',transform=ax.transAxes,ha='center')
- axs[1,0].set_axis_off();axs[1,0].text(.03,.93,r'$E=D_0\cup F$'+'\n\n'+r'$F_{\leq1}\subseteq F_{\leq2}\subseteq F$'+'\n\n'+r'$G_1\subseteq G_2\subseteq G$',transform=axs[1,0].transAxes,fontsize=11,va='top')
- ax=axs[1,1];toy=v[v.parent_graph_id.isna()];hist=v[v.parent_graph_id.notna()]
- ax.texts[0].set_x(.02)
- ax.plot([0,1],[toy.classification_exact.sum(),hist.classification_exact.sum()],ls='',marker='o',c=GRAY,ms=5)
- ax.set(xticks=[0,1],xticklabels=['Archived toys','Induced graphs'],ylabel='Independent exact matches',ylim=(0,46),xlim=(-.4,1.4));ax.text(0,8,'5/5',ha='center');ax.text(1,42,'40/40',ha='center');save(fig,6)
+ save(fig,6)
 def s7():
  d=read('source_figS7');d=d[d.W.eq(.805)];s=read('source_figS7_scaling');s=s[s.control.eq(.805)];direction=read('source_figS7_direction');fig,axs=canvas(h=113)
  for j,(L,g) in enumerate(d.groupby('L')):
