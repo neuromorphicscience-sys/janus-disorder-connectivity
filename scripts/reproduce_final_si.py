@@ -40,8 +40,8 @@ def summary(ax,d,x,y='S',color=MAG,label=None,marker='o',ls='-',mfc=None):
 def ecdf(ax,a,color,label,ls='-',marker=None):
  x=np.sort(np.asarray(a));ax.step(x,np.arange(1,len(x)+1)/len(x),where='post',color=color,ls=ls,label=label,marker=marker,markevery=max(1,len(x)//4),markersize=3)
 def size_axis(ax):ax.set_xscale('log',base=2);ax.set_xticks([64,128,256,512],labels=['64','128','256','512'])
-def outside_legend(ax,**kwargs):
- return ax.legend(loc='lower center',bbox_to_anchor=(.5,1.02),borderaxespad=0,**kwargs)
+def inside_legend(ax,loc='best',**kwargs):
+ return ax.legend(loc=loc,borderaxespad=.5,**kwargs)
 def metric_key(label,marker,color=GRAY):
  return Line2D([],[],color=color,marker=marker,linestyle='',label=label,markersize=3.5)
 def limit_key(label,ls='--'):
@@ -70,14 +70,16 @@ def audit_legends(fig,n):
     elif any(path.transformed(collection.get_transform()).intersects_bbox(clipped,filled=isinstance(collection,PolyCollection)) for path in collection.get_paths()):
      hits.append({'axes_index':index,'type':'band' if isinstance(collection,PolyCollection) else 'interval','label':collection.get_label()})
   margin=1
+  axis_box=legend.axes.get_window_extent(renderer)
+  inside_axes=box.x0>=axis_box.x0-margin and box.y0>=axis_box.y0-margin and box.x1<=axis_box.x1+margin and box.y1<=axis_box.y1+margin
   inside=box.x0>=fig.bbox.x0-margin and box.y0>=fig.bbox.y0-margin and box.x1<=fig.bbox.x1+margin and box.y1<=fig.bbox.y1+margin
-  records.append({'labels':[text.get_text() for text in legend.get_texts()],'bounds_pixels':list(box.bounds),'inside_figure':bool(inside),'data_intersections':hits,'text_intersections':text_hits})
+  records.append({'labels':[text.get_text() for text in legend.get_texts()],'bounds_pixels':list(box.bounds),'inside_figure':bool(inside),'inside_axes':bool(inside_axes),'data_intersections':hits,'text_intersections':text_hits})
  (OUT/f'figS{n}_legend_audit.json').write_text(json.dumps(records,indent=2)+'\n')
 
 def s1():
  d=read('source_figS1');fig,axs=canvas(1,2,78)
  for j,q in enumerate([4,5,7,10]):summary(axs[0,0],d[d.q.eq(q)],'control',label=rf'$q={q}$',marker=MARKERS[j],ls=STYLES[j])
- axs[0,0].set(xlabel=r'$W$',ylabel=r'$S$',ylim=(-.02,1.03));outside_legend(axs[0,0],ncol=4,columnspacing=1)
+ axs[0,0].set(xlabel=r'$W$',ylabel=r'$S$',ylim=(-.02,1.03));inside_legend(axs[0,0],loc='upper left',ncol=1)
  endpoint=[]
  for j,(q,g) in enumerate(d.groupby('q')):
   w=g.control.max();a=g[g.control.eq(w)].S;err(axs[0,1],q,a,MAG);endpoint.append(dict(q=int(q),W=w,n=len(a),median=a.median(),Q1=a.quantile(.25),Q3=a.quantile(.75)))
@@ -92,7 +94,7 @@ def s2():
  for ax,anis in zip(axs.flat[4:],[False,True]):
   g=d[d.control_name.eq('alpha')];g=g[g.correlation_family.str.startswith('ANISO') if anis else ~g.correlation_family.str.startswith('ANISO')]
   for j,((ex,ey),a) in enumerate(g.groupby(['ell_x','ell_y'])):summary(ax,a,'control',label=rf'$({ex:g},{ey:g})R$',marker=MARKERS[j],ls=STYLES[j])
-  ax.set(xlabel=r'$\alpha$',ylabel=r'$S$',ylim=(-.02,1.03));outside_legend(ax,title=r'$(\ell_x,\ell_y)$',ncol=2)
+  ax.set(xlabel=r'$\alpha$',ylabel=r'$S$',ylim=(-.02,1.03));inside_legend(ax,loc='lower left',title=r'$(\ell_x,\ell_y)$',ncol=1)
  save(fig,2)
 def s3():
  d=read('source_figS3');fig,axs=canvas(2,2,113);cross=[]
@@ -106,8 +108,8 @@ def s3():
    assert len(brackets)==1,('Crossing not uniquely bracketed',L,t,brackets)
    x1,x2,y1,y2=brackets[0];r[f'W_{t:g}']=x1+(t-y1)*(x2-x1)/(y2-y1);r[f'bracket_{t:g}']=f'{x1:g},{x2:g}'
   r['width_10_90']=r['W_0.9']-r['W_0.1'];cross.append(r)
- axs[0,0].set(xlabel=r'$W$',ylabel=r'Individual $S$ and median',ylim=(-.02,1.03));outside_legend(axs[0,0],title=r'$L/R$',ncol=4,columnspacing=1)
- axs[0,1].set(xlabel=r'$W$',ylabel=r'$S$',xlim=(.75,.835),ylim=(-.02,1.03));outside_legend(axs[0,1],title=r'$L/R$',ncol=4,columnspacing=1)
+ axs[0,0].set(xlabel=r'$W$',ylabel=r'Individual $S$ and median',ylim=(-.02,1.03));inside_legend(axs[0,0],loc='upper left',title=r'$L/R$',ncol=1)
+ axs[0,1].set(xlabel=r'$W$',ylabel=r'$S$',xlim=(.75,.835),ylim=(-.02,1.03));inside_legend(axs[0,1],loc='upper left',title=r'$L/R$',ncol=1)
  c=pd.DataFrame(cross);c.to_csv(OUT/'finite_size_crossings.csv',index=False)
  axs[1,0].plot(c.L,c['W_0.5'],color=MAG,marker='o');axs[1,0].set(xlabel=r'$L/R$',ylabel=r'$W_{1/2}$')
  axs[1,1].plot(c.L,c.width_10_90,color=MAG,marker='o');axs[1,1].set(xlabel=r'$L/R$',ylabel=r'$\Delta W_{10-90}$')
@@ -121,9 +123,9 @@ def paired_diag(ax,d,key):
 def s4():
  d=read('source_figS4').sort_values(['W','realization']);fig,axs=canvas()
  for ax,key in zip(axs.flat,['length','relative_angle','dy']):paired_diag(ax,d,key)
- ax=axs[1,1];x=np.arange(48)+1;ax.scatter(x,d.I0_relative_change,c=GRAY,s=9,marker='o',label='Rate change');ax.axhline(.03,c=AMBER,ls='--');ax.set(xlabel='Pair index',ylabel=r'$|\Delta I_0|/\max(I_{0,o},0.01)$',ylim=(0,.04),xlim=(0,49),xticks=[1,16,32,48])
- twin=ax.twinx();twin.scatter(x,d.changed_edge_fraction,c='#333333',s=9,marker='s');twin.axhline(.25,c=AMBER,ls=':');twin.set(ylabel='Changed-edge fraction',ylim=(0,1))
- outside_legend(ax,handles=[metric_key('Rate (left)','o'),metric_key('Changed edges (right)','s','#333333'),limit_key('0.03 (left)'),limit_key('0.25 (right)',':')],ncol=2,columnspacing=1)
+ ax=axs[1,1];x=np.arange(48)+1;ax.scatter(x,d.I0_relative_change,c=GRAY,s=9,marker='o',label='Rate change');ax.axhline(.03,c=AMBER,ls='--');ax.set(xlabel='Pair index',ylabel=r'$|\Delta I_0|/\max(I_{0,o},0.01)$',ylim=(0,.05),xlim=(0,49),xticks=[1,16,32,48])
+ twin=ax.twinx();twin.scatter(x,d.changed_edge_fraction,c='#333333',s=9,marker='s');twin.axhline(.25,c=AMBER,ls=':');twin.set(ylabel='Changed-edge fraction',ylim=(0,1.2))
+ inside_legend(ax,loc='upper center',handles=[metric_key('Rate (left)','o'),metric_key('Changed edges (right)','s','#333333'),limit_key('0.03 (left)'),limit_key('0.25 (right)',':')],ncol=2,columnspacing=1)
  save(fig,4)
 def s5():
  d=read('source_figS5');acc=d[d.accepted];fig,axs=canvas(h=113)
@@ -133,18 +135,18 @@ def s5():
   axs[0,0].text(i,1.035,f'{len(g)}/48',transform=axs[0,0].get_xaxis_transform(),ha='center',va='bottom',fontsize=7.5)
  for j,(key,c,marker) in enumerate([('A_loc',G1,'o'),('D',G2,'s'),('f_up',GRAY,'^')]):
   for i,(ell,g) in enumerate(acc.groupby('ell_over_R')):err(axs[0,1],i,g[key+'_reassigned']/g[key+'_original'],c,label={'A_loc':r'$A_{\rm loc}$','D':r'$D$','f_up':r'$f_\uparrow$'}[key] if i==0 else None,marker=marker,offset=(j-1)*.13)
- axs[0,1].axhline(1,c=GRAY,ls='--',lw=.6);axs[0,1].set_ylim(.994,1.007);outside_legend(axs[0,1],ncol=3)
+ axs[0,1].axhline(1,c=GRAY,ls='--',lw=.6);axs[0,1].set_ylim(.994,1.007);inside_legend(axs[0,1],loc='lower left',ncol=3)
  for i,(ell,g) in enumerate(d.groupby('ell_over_R')):
   for kind,c,marker,off in [('KS',GRAY,'o',-.09),('Wasserstein','#333333','s',.09)]:
    worst=g[[x for x in g if x.endswith('_'+kind)]].max(axis=1);axs[1,0].scatter(np.full(len(g),i+off),worst,c=c,s=8,marker=marker,alpha=.35,label=kind if i==0 else None)
   accepted=g.accepted.to_numpy();axs[1,1].scatter(np.full(len(g),i),g.I0_relative_change,c=GRAY,s=9,marker='o',alpha=.45)
   reject=g[~g.accepted];axs[1,1].scatter(np.full(len(reject),i),reject.I0_relative_change,c='#111111',s=22,marker='x',label='Rejected' if len(reject) else None)
  axs[1,0].axhline(.03,c=AMBER,ls='--');axs[1,0].set(ylabel='Largest marginal distance',ylim=(0,.032));axs[1,0].legend(handles=[metric_key('KS','o'),metric_key('Normalized W1','s','#333333'),limit_key('Limit: 0.03')],loc='center',bbox_to_anchor=(.65,.65))
- axs[1,1].axhline(.03,c=AMBER,ls='--');axs[1,1].set(ylabel='Relative rate change',ylim=(0,.05))
+ axs[1,1].axhline(.03,c=AMBER,ls='--');axs[1,1].set(ylabel='Relative rate change',ylim=(0,.06))
  twin=axs[1,1].twinx()
  for i,(ell,g) in enumerate(d.groupby('ell_over_R')):twin.scatter(np.full(len(g),i+.13),g.changed_edge_fraction,s=7,c='#333333',marker='s',alpha=.3)
- twin.axhline(.25,c=AMBER,ls=':');twin.set(ylabel='Changed-edge fraction',ylim=(0,1))
- outside_legend(axs[1,1],handles=[metric_key('Rate change (left)','o'),metric_key('Changed edges (right)','s','#333333'),metric_key('Rejected','x','#111111')],ncol=2,columnspacing=1)
+ twin.axhline(.25,c=AMBER,ls=':');twin.set(ylabel='Changed-edge fraction',ylim=(0,1.2))
+ inside_legend(axs[1,1],loc='upper center',handles=[metric_key('Rate change (left)','o'),metric_key('Changed edges (right)','s','#333333'),metric_key('Rejected','x','#111111')],ncol=2,columnspacing=1)
  axs[0,0].set(ylabel=r'$\log_{10}(S_r/S_o)$');axs[0,1].set(ylabel='Paired local-statistic ratio')
  for ax in axs.flat:ax.set(xlabel=r'$\ell/R$',xticks=range(4),xticklabels=['1','2','4','8'],xlim=(-.5,3.5))
  save(fig,5)
@@ -198,12 +200,12 @@ def s9():
   for y,c,m,ls in [('S_full_core',MAG,MARKERS[j],STYLES[j]),('S2_core',G2,MARKERS[j],STYLES[j])]:summary(axs[1,0],g,'width_over_R',y,c,label=rf'$W={w:g}$' if y=='S2_core' else None,marker=m,ls=ls,mfc=c if y=='S_full_core' else 'white')
   summary(axs[1,1],g,'width_over_R','retained_fraction',GRAY,label=rf'$W={w:g}$',marker=MARKERS[j],ls=STYLES[j])
  for ax in axs[0]:ax.set(xlabel=r'$W$',xticks=range(4),xticklabels=['.805','.815','.86','.90'],xlim=(-.5,3.5))
- axs[0,0].set(ylabel='Retained-core SCC fraction',ylim=(-.02,1.03));axs[0,0].legend(loc='lower center',bbox_to_anchor=(.5,1.12),ncol=2,borderaxespad=0)
+ axs[0,0].set(ylabel='Retained-core SCC fraction',ylim=(-.02,1.25),yticks=[0,.2,.4,.6,.8,1]);inside_legend(axs[0,0],loc='upper center',ncol=2)
  axs[0,1].set(ylabel=r'$S(G[I])-S(G_2[I])$',ylim=(0,1.03))
- axs[1,0].set(ylabel='Retained-core SCC fraction',ylim=(-.02,1.03))
- object_legend=outside_legend(axs[1,0],handles=[Line2D([],[],color=GRAY,marker='o',linestyle='',label=r'$G[I]$ (filled)'),Line2D([],[],color=GRAY,marker='o',markerfacecolor='white',linestyle='',label=r'$G_2[I]$ (open)')],ncol=2)
+ axs[1,0].set(ylabel='Retained-core SCC fraction',ylim=(-.02,1.25),yticks=[0,.2,.4,.6,.8,1])
+ object_legend=inside_legend(axs[1,0],loc='upper center',handles=[Line2D([],[],color=GRAY,marker='o',linestyle='',label=r'$G[I]$ (filled)'),Line2D([],[],color=GRAY,marker='o',markerfacecolor='white',linestyle='',label=r'$G_2[I]$ (open)')],ncol=2)
  axs[1,0].add_artist(object_legend)
- axs[1,0].legend(ncol=2,loc='center',bbox_to_anchor=(.5,.29),borderpad=.05,labelspacing=.15)
+ axs[1,0].legend(ncol=2,loc='center',bbox_to_anchor=(.5,.24),borderpad=.05,labelspacing=.15)
  axs[1,1].set(ylabel='Retained-node fraction',ylim=(0,1.03));axs[1,1].legend(ncol=2,loc='lower left')
  for ax in axs[1]:ax.set(xlabel=r'$\Delta/R$',xticks=[2,4,8])
  save(fig,9)
