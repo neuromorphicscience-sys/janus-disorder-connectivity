@@ -49,3 +49,7 @@ The full-graph finite-size inventory contains 4,634 distinct hashes at four size
 The boundary-deletion population contains every eligible frozen L=128, q=7, sigma=24 Gaussian graph at W=.805,.815,.86,.90: respectively 96,48,24,24. Each has widths 2,4,8 R. Graph-level values retain the complete observed spread. Main-figure representatives were selected from the earlier mass cohort by proximity of full-graph S2 to its condition median, with graph identifier as tie-break; selection did not optimize a deletion outcome. `REPRESENTATIVE_PLACEMENT.csv` gives the earlier selection rule and midrank percentiles in the enlarged deletion ensemble.
 
 `SOURCE_TABLE_IDENTITIES.csv` records the names and content digests of archived source tables. Each compact row has a graph hash and, where applicable, a source identity. The included data manifest verifies the actual public files. Original private directory paths and transient graph caches are omitted.
+
+## Byte preservation
+
+The three original Figure 2 CSV tables retain their archived CRLF bytes. They are marked `-text` in `.gitattributes` so Git neither converts them nor reports a normalization difference in a fresh checkout. Other text source files use LF. The data manifest checks actual file bytes; the numerical source values are unchanged.

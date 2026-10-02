@@ -136,7 +136,7 @@ def size_and_bulk():
     axs[1,0].set(xlabel=r'$L/R$',ylabel='Span / L',yscale='log');axs[1,0].legend(frameon=False)
     for k,color in [(1,COL['g1']),(2,COL['g2'])]:
         med,lo,hi=groupsummary(g,'L',f'bottom_fraction_2R_G{k}');axs[1,1].errorbar(med.index,med,yerr=[med-lo,hi-med],c=color,label=rf'$G_{k}$',marker='o',capsize=2)
-    axs[1,1].set(xlabel=r'$L/R$',ylabel=r'Fraction in downstream $2R$ strip',ylim=(0,1.05));axs[1,1].legend(frameon=False)
+    axs[1,1].set(xlabel=r'$L/R$',ylabel=r'Downstream $2R$ strip fraction',ylim=(0,1.05));axs[1,1].legend(frameon=False)
     for ax in axs.flat:ax.set_xscale('log',base=2);ax.set_xticks([64,128,256,512],labels=['64','128','256','512'])
     save(fig,6)
     d=pd.read_csv(ROOT/'06_si/INTERNAL_RECURRENCE_1528.csv');fig,axs=canvas(2,2,110)
@@ -166,7 +166,7 @@ def deletion():
     for j,(w,g) in enumerate(d.groupby('W')):
         for k,col,ls in [('S_full_core',COL['full'],'-'),('S2_core',COL['g2'],'--')]:
             med,lo,hi=groupsummary(g,'width_over_R',k);ax.errorbar(med.index,med,yerr=[med-lo,hi-med],c=col,marker=['o','s','^','D'][j],ls=ls,capsize=2,label=rf'$W={w:g}$' if k=='S2_core' else None)
-    ax.set(xlabel=r'Deletion width $w/R$',ylabel='Core fraction',xticks=[2,4,8]);ax.legend(frameon=False,ncol=2)
+    ax.set(xlabel=r'Deletion width $w/R$',ylabel='Core fraction',xticks=[2,4,8]);ax.legend(frameon=False,ncol=2,loc='center',bbox_to_anchor=(.55,.34))
     ax=axs[1,0]
     for j,(w,g) in enumerate(width4.groupby('W')):
         x=np.sort(g.delta_full_G2);ax.step(x,np.arange(1,len(x)+1)/len(x),where='post',c=[COL['full'],COL['g1'],COL['g2'],COL['gray']][j],label=rf'$W={w:g}$')
@@ -174,7 +174,7 @@ def deletion():
     ax=axs[1,1]
     for key,col,label,marker in [('S_full_core',COL['full'],r'$G[I]$','o'),('S2_core',COL['g2'],r'$G_2[I]$','s')]:
         ax.plot(range(4),r.sort_values('W')[key+'_empirical_percentile'],marker=marker,ls='',c=col,label=label)
-    ax.axhline(.5,c=COL['gray'],ls='--',lw=.7);ax.set(ylabel='Representative ensemble percentile',xlabel=r'$W$',xticks=range(4),xticklabels=['.805','.815','.86','.90'],ylim=(-.02,1.02));ax.legend(frameon=False)
+    ax.axhline(.5,c=COL['gray'],ls='--',lw=.7);ax.set(ylabel='Representative percentile',xlabel=r'$W$',xticks=range(4),xticklabels=['.805','.815','.86','.90'],ylim=(-.02,1.02));ax.legend(frameon=False)
     save(fig,8)
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('--existing-only',action='store_true');a=ap.parse_args()

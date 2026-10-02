@@ -8,3 +8,8 @@
 *.json text eol=lf
 *.png binary
 *.pdf binary
+
+# Preserve the exact archived bytes of the original Fig. 2 source tables.
+data/figure2/paired_reassignment.csv -text
+data/figure2/displacement_histogram.csv -text
+data/figure2/edge_length_quantiles.csv -text
