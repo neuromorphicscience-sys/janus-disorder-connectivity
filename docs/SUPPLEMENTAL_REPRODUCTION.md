@@ -12,6 +12,12 @@ figures/generated/supplemental. Every point comes from the CSV files listed in
 data/supplemental_final/README.md. The font is DejaVu Sans, bundled with Matplotlib.
 Reference exports are supplied in figures/reference/supplemental.
 
+To additionally export legend bounds and data/text intersection diagnostics:
+
+    python scripts/reproduce_final_si.py --data data/supplemental_final --output figures/generated/supplemental --legend-audit
+
+These JSON diagnostics complement visual inspection of the final PDF.
+
 To compile the single-column supplement with an existing LaTeX installation:
 
     cd supplemental
