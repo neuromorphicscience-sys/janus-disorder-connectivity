@@ -1,0 +1,33 @@
+{
+  "ell_over_R": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "chosen_before_new_connectivity": true,
+  "base_graph_count": 48,
+  "new_base_graph_count": 0,
+  "field_seed_rule": [
+    2026091973,
+    "historical realization"
+  ],
+  "noise_reused_across_ell": true,
+  "one_field_per_base_per_ell": true,
+  "maximum_attempts": 1,
+  "acceptance": {
+    "KS_max": 0.03,
+    "normalized_Wasserstein_max": 0.03,
+    "I0_relative_change_max": 0.03,
+    "changed_edge_fraction_min": 0.25,
+    "outdegrees_exact": true,
+    "orientation_multiset_exact": true
+  },
+  "normalizers": {
+    "length": 2,
+    "relative_angle": "pi",
+    "dy": 2
+  },
+  "surrogate_S_evaluated_only_after_fidelity_record_saved": true,
+  "notes": "ell=1 uses the same unit grid and bilinear interpolation as the canonical protocol; no pilot rejection, retry, or gate change."
+}

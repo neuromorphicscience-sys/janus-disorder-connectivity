@@ -51,8 +51,11 @@ def edge_observables(graph, points, theta):
     lengths = np.linalg.norm(delta, axis=1)
     unit = delta / lengths[:, None]
     direction = np.column_stack((np.sin(theta[src]), -np.cos(theta[src])))
+    alpha = np.arctan2(delta[:, 0], -delta[:, 1]) - theta[src]
+    alpha = np.arctan2(np.sin(alpha), np.cos(alpha))
     return {
         "length": lengths,
+        "source_relative_angle": alpha,
         "vertical_displacement": delta[:, 1],
         "source_relative_alignment": np.einsum("ij,ij->i", unit, direction),
         "local_alignment": float(np.mean(np.einsum("ij,ij->i", unit, direction))),
@@ -63,10 +66,10 @@ def edge_observables(graph, points, theta):
 
 
 def marginal_fidelity(original: dict, reassigned: dict, R: float = 1.0) -> dict:
-    """KS and normalized Wasserstein distances used by the intervention audit."""
+    """Canonical length/angle/displacement distances; angle is wrapped to [-pi, pi]."""
     fields = {
         "length": 2 * R,
-        "source_relative_alignment": 2.0,
+        "source_relative_angle": np.pi,
         "vertical_displacement": 2 * R,
     }
     out = {}

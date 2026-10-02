@@ -22,3 +22,10 @@ Outputs are written to figures/generated. Reference manuscript PDFs are in figur
 ## Full realization replay
 
 The source package exposes deterministic model generation and sparse analysis algorithms. Full replay of the largest ensembles is intentionally separate from figure reproduction because it is computationally expensive. The public release supplies compact derived source tables, ensemble counts, and available seed/hash identities rather than large production graph caches.
+
+## Supplemental statistics and figures
+
+    python scripts/summarize_supplemental.py
+    python scripts/reproduce_supplemental.py
+
+See [Supplemental reproduction](SUPPLEMENTAL_REPRODUCTION.md) for optional deterministic graph replay and the actual sample inventories. The canonical field recipe and wrapped-angle fidelity definition are given there explicitly.

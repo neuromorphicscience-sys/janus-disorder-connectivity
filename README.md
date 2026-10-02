@@ -13,7 +13,9 @@ The repository provides:
 - fixed-multiset spatial reassignment and fidelity observables;
 - surface and internal recurrence observables;
 - fixed-N local-alignment and clean-boundary predictions;
-- source tables and scripts for manuscript Figs. 1–4.
+- source tables and scripts for manuscript Figs. 1–4 and Supplemental Figs. S1–S8;
+- frozen correlation-length intervention and boundary-deletion replays;
+- parameter controls and descriptive finite-size restoration diagnostics.
 
 ## Main physical result
 
@@ -65,6 +67,13 @@ Generated PDF and PNG files are written to figures/generated.
 | Fig. 4 | data/figure4 | scripts/reproduce_fig4.py | figures/generated/fig4.pdf |
 
 The reference PDFs in figures/reference are the manuscript versions. Small rendering differences can arise from local font and Matplotlib versions; the plotted values and definitions are fixed by the supplied source tables.
+
+## Supplemental Material
+
+    python scripts/summarize_supplemental.py
+    python scripts/reproduce_supplemental.py
+
+These commands reproduce descriptive statistics and Figs. S1–S8 from the graph-level source tables. Optional frozen-graph replay, actual sample counts, and field definitions are documented in [Supplemental reproduction](docs/SUPPLEMENTAL_REPRODUCTION.md). The single-column LaTeX source is [supplemental.tex](supplemental/supplemental.tex).
 
 ## Frozen data and provenance
 

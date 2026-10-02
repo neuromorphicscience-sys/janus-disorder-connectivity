@@ -10,3 +10,10 @@ figures/generated/*.pdf
 figures/generated/*.png
 figures/generated/*.csv
 !figures/generated/README.md
+
+outputs/
+figures/generated/supplemental/
+supplemental/*.aux
+supplemental/*.log
+supplemental/*.out
+supplemental/*.pdf

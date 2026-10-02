@@ -1,0 +1,24 @@
+{
+  "W": [
+    0.805,
+    0.815,
+    0.86,
+    0.9
+  ],
+  "width_over_R": [
+    2,
+    4,
+    8
+  ],
+  "eligible_population": "Union of primary and dimensional-scaling frozen L128/q7/sigma24 graphs, deduplicated by edge hash",
+  "n_by_W": {
+    "0.805": 96,
+    "0.815": 48,
+    "0.86": 24,
+    "0.9": 24
+  },
+  "classify_before_deletion": true,
+  "edge_reselection": false,
+  "primary_order_recomputation_after_deletion": false,
+  "missing_label_policy": "Replay frozen seeds, verify base hash, recompute exact order1/2 in complete graph, verify archived S1 and S2; cache in new workspace only"
+}

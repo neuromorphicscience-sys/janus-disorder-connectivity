@@ -1,4 +1,5 @@
 {
+  "data/README.md": "1e95fbe01efe47d66c67ec817305242dd290738b643b2f1b21c6787ce8f58bee",
   "data/figure1/bulk_fixedN_predictions.csv": "872c687d00acdf09d764e4057c9449ca9e7860e1598607ec143f91af6dad7e1f",
   "data/figure1/bulk_marginal_validation.csv": "de5ffc4291f6089c2e5bcd19ee84f7c617f650a71f96d41cfc7c11515a98007c",
   "data/figure1/restoration_W_scan.csv": "02fb82b3d6a85470412bd96923cb8def3d6317a15d339a514838bd87560851e5",
@@ -20,5 +21,25 @@
   "data/figure4/clean_feedback_prediction.json": "4b713ef8e59013e03f39b593ba3e68b303e234aac7135cda348569f7088fa3e3",
   "data/manifests/ensemble_counts.csv": "94c3ae5f053a7fd75ed01e6c27aa843e9b11fd54416524f949181ec1fb61beb4",
   "data/manifests/figure_map.json": "9c054fd5282d02bbe12fa7482216877f9dee2748ba98dd6435fcda2168cbfb84",
-  "data/manifests/frozen_identifiers.csv": "65b7fc1b7d3528e006f299baaebc3852e05dfdce5d9158feed1360be3e3b7e37"
+  "data/manifests/frozen_identifiers.csv": "65b7fc1b7d3528e006f299baaebc3852e05dfdce5d9158feed1360be3e3b7e37",
+  "data/supplemental/02_ell_sensitivity/BASE_MANIFEST.csv": "e8ffbf8a3116fbadcbdd7929198927d8beba0940a9cf6d924fdbcbaf563a2186",
+  "data/supplemental/02_ell_sensitivity/GRAPHLEVEL.csv": "89200ba96ff49fdd853868858061fc53326859a8a73c8a76fa6c3c68735155b6",
+  "data/supplemental/02_ell_sensitivity/PROTOCOL.json": "7787c981c04d953a36219740ea4aa21bec6dc92e4b7860422560f2ef7e0e9085",
+  "data/supplemental/02_ell_sensitivity/REJECTED_FIDELITY.csv": "d2ad07fd08c4dd36196b7cc9e2f7cfa427acacb461eafbd06325fa0d510adbe3",
+  "data/supplemental/02_ell_sensitivity/SUMMARY.csv": "f4f2aae68157986d8b4fbe91f75bbb3701767ed16c5cc82a6a3f8ae87d02b5a5",
+  "data/supplemental/03_boundary_deletion_ensemble/BASE_MANIFEST.csv": "50776dea5ff4c826205e808e76748d373937d2cece7e8716bc54c43dddab749f",
+  "data/supplemental/03_boundary_deletion_ensemble/GRAPHLEVEL.csv": "bfa7d3d85f431defaac8abcba7d5ff7294498f905b8cd0204d84987e7334a855",
+  "data/supplemental/03_boundary_deletion_ensemble/PROTOCOL.json": "450e699902a1b449a653b2472a7732a1904480eb844bed4044b54cf24e197ba8",
+  "data/supplemental/03_boundary_deletion_ensemble/REPRESENTATIVE_PLACEMENT.csv": "b02297f469612ce56ba639eae17b675f1158c47bb44b162d1fe30161d550af8d",
+  "data/supplemental/03_boundary_deletion_ensemble/SUMMARY.csv": "ab90064a753ad65d190fc734f305eda4d6bf06a88813bf0eae1ca10aa35b6256",
+  "data/supplemental/04_parameter_robustness/PARAMETER_COVERAGE.csv": "7b15fc37c7c6058616783f73a67348bd6498b30462a6bb9d1d03ddbf50ac66af",
+  "data/supplemental/04_parameter_robustness/ROBUSTNESS_GRAPHLEVEL.csv": "c1a5e57029b5f7dfb3374531fde596026e1a8ae3988ef3d74a33ee23acc720bf",
+  "data/supplemental/04_parameter_robustness/ROBUSTNESS_SUMMARY.csv": "e4dadf8aff451cf04da75f21d5c17a46022ce82b0b08a2b6654c9f488a988c2a",
+  "data/supplemental/05_finite_size_diagnostics/CROSSOVER_DIAGNOSTICS.csv": "45f6a0bdc39e39cecb3845ff069fb2269a74829bfb55b9dd2519b3d592db4070",
+  "data/supplemental/05_finite_size_diagnostics/FINITE_SIZE_GRAPHLEVEL.csv": "f64d8a9a28c3a00b3edafae296d87aca7f567e1b5fe60d9759b38523610c0427",
+  "data/supplemental/05_finite_size_diagnostics/FINITE_SIZE_SUMMARY.csv": "4a3102ca1c1ba0e5be68b00acdec8712cce9591bebd8ededa909ec02a44eddac",
+  "data/supplemental/05_finite_size_diagnostics/SCALING_784_GRAPHLEVEL.csv": "c7c9443cb62c16433f6dc37451d2fdca60dd856b0dbe9a512ee0596687b0f1e6",
+  "data/supplemental/06_si/INTERNAL_RECURRENCE_1528.csv": "86b7b9e6d58760498195017ae4d05effaf37ce857ddeb098cb5eda1431a33750",
+  "data/supplemental/SOURCE_TABLE_IDENTITIES.csv": "51842de7ca02969358ebf88e85c5804352e47eb857d64961654d7f10142e5f42",
+  "data/supplemental/runtime_versions.json": "7f931b35d00f7a6b8c07c77fcbf8b384e2a2e23432f27bdc79c757e8618a475b"
 }

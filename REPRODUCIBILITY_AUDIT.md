@@ -1,6 +1,6 @@
-# Reproducibility audit
+# Historical reproducibility audit
 
-Audit date: 2026-09-28
+Audit date: 2026-09-28 (original submission snapshot). The supplemental update has its own source manifest, runtime record, tests, and [reproduction instructions](docs/SUPPLEMENTAL_REPRODUCTION.md). The counts below describe the original snapshot.
 
 ## Environment
 
