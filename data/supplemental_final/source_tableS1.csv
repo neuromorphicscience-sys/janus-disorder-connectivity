@@ -1,0 +1,25 @@
+dataset,q,sigma_R2,L_over_R,control,range,conditions,n_per_condition,total_n,main_use,SI_use
+Full Gaussian sizes,7,24,"64,128,256,512",W,0.75--0.9,81,4--150,4634,Fig. 1,Full Gaussian sizes
+Canonical intervention,7,24,128,W,0.79--0.81,3,16--16,48,Fig. 2,Canonical intervention
+Direction controls,7,24,128,W,0.805--0.805,3,24--24,72,Fig. 3,Direction controls
+Largest-component geometry,7,24,"64,128,256,512",W,0.7975--0.9,28,16--96,784,Fig. 3,Largest-component geometry
+Internal recurrence,7,24,128,W,0.75--0.9,24,8--96,1528,Fig. 3,Internal recurrence
+"Deletion, three widths",7,24,128,W,0.805--0.9,12,24--96,576,Fig. 4,"Deletion, three widths"
+Gaussian q=4.0,4,24,128,control,0.898528--0.949023,30,16--32,784,robustness,Gaussian q=4.0
+Gaussian q=5.0,5,24,128,control,0.82--0.98,11,12--24,240,robustness,Gaussian q=5.0
+Gaussian q=6.0,6,24,128,control,0.79--0.87,13,16--32,352,robustness,Gaussian q=6.0
+Gaussian q=7.0,7,24,128,control,0.75--0.9,24,8--96,1528,robustness,Gaussian q=7.0
+Gaussian q=8.0,8,24,128,control,0.735--0.815,13,16--32,336,robustness,Gaussian q=8.0
+Gaussian q=10.0,10,24,128,control,0.65--0.85,9,12--24,180,robustness,Gaussian q=10.0
+Gaussian q=12.0,12,24,128,control,0.696233--0.733762,33,16--32,768,robustness,Gaussian q=12.0
+gaussian: ANISO_X,7,24,128,control,0.0364724--0.409039,37,16--32,928,robustness,gaussian: ANISO_X
+gaussian: ANISO_Y,7,24,128,control,0.0349247--0.388857,36,16--32,912,robustness,gaussian: ANISO_Y
+gaussian: rank_iso_1R,7,24,128,control,0.0446126--0.406923,35,16--32,896,robustness,gaussian: rank_iso_1R
+gaussian: rank_iso_2R,7,24,128,control,0--0.45,14,16--32,384,robustness,gaussian: rank_iso_2R
+gaussian: rank_iso_3R,7,24,128,control,0.0635756--0.333484,35,16--32,896,robustness,gaussian: rank_iso_3R
+gaussian: rank_iso_6R,7,24,128,control,0.0829585--0.313474,35,16--32,864,robustness,gaussian: rank_iso_6R
+laplace: iid,7,24,128,control,0.499187--0.5358,30,16--32,800,robustness,laplace: iid
+uniform: iid,7,24,128,control,1.6--1.8,18,16--32,336,robustness,uniform: iid
+vonmises: iid,7,24,128,control,2.1--2.9,16,16--32,416,robustness,vonmises: iid
+Correlation sensitivity,7,24,128,ell_over_R,1--8,12,16--16,192,Fig. 2,Correlation sensitivity
+Clean feedback benchmark,7,24,128,W,0,1,24,24,Fig. 4,numerical inventory

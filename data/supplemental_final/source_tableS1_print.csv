@@ -1,0 +1,16 @@
+Dataset,q,L_over_R,Control,Conditions,n_per_condition,Total
+Full Gaussian sizes,7,"64,128,256,512",$W$,81,4--150,4634
+Canonical intervention,7,128,$W$,3,16,48
+Direction controls,7,128,$\Delta\theta$,3,24,72
+Largest SCC geometry,7,"64,128,256,512",$W$,28,16--96,784
+Internal recurrence,7,128,$W$,24,8--96,1528
+"Deletion, three widths",7,128,$W$,12,24--96,576
+Wrapped Laplace,7,128,$b$,30,16--32,800
+Bounded uniform,7,128,$A$,18,16--32,336
+von Mises,7,128,$\kappa$,16,16--32,416
+$\ell$ sensitivity,7,128,$\ell/R$,12,16,192
+Clean feedback,7,128,$W$,1,24,24
+Connection-budget scans,4--12,128,$W$,133,8--96,4188
+Gaussian L128 scan,7,128,$W$,24,8--96,1528
+Isotropic rank fields,7,128,$\alpha$,119,16--32,3040
+Anisotropic rank fields,7,128,$\alpha$,73,16--32,1840

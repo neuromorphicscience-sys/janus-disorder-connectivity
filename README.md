@@ -13,7 +13,7 @@ The repository provides:
 - fixed-multiset spatial reassignment and fidelity observables;
 - surface and internal recurrence observables;
 - fixed-N local-alignment and clean-boundary predictions;
-- source tables and scripts for manuscript Figs. 1–4 and Supplemental Figs. S1–S8;
+- source tables and scripts for manuscript Figs. 1–4 and Supplemental Figs. S1–S9;
 - frozen correlation-length intervention and boundary-deletion replays;
 - parameter controls and descriptive finite-size restoration diagnostics.
 
@@ -68,12 +68,18 @@ Generated PDF and PNG files are written to figures/generated.
 
 The reference PDFs in figures/reference are the manuscript versions. Small rendering differences can arise from local font and Matplotlib versions; the plotted values and definitions are fixed by the supplied source tables.
 
-## Supplemental Material
+## Reproducing the Supplemental Material
 
-    python scripts/summarize_supplemental.py
+    python scripts/analyze_final_si.py --data data/supplemental_final --output outputs/supplemental_statistics
+    python scripts/validate_si_classifier.py --data data/supplemental_final --output outputs/supplemental_classifier
     python scripts/reproduce_supplemental.py
 
-These commands reproduce descriptive statistics and Figs. S1–S8 from the graph-level source tables. Optional frozen-graph replay, actual sample counts, and field definitions are documented in [Supplemental reproduction](docs/SUPPLEMENTAL_REPRODUCTION.md). The single-column LaTeX source is [supplemental.tex](supplemental/supplemental.tex).
+These commands recompute descriptive statistics, independently validate the five archived
+toy graphs, and reproduce Figs. S1–S9 as vector PDF/SVG and 600 dpi PNG.
+Exact sample counts, rejected intervention attempts, source-table mappings, and optional
+frozen-graph replay are documented in [Supplemental reproduction](docs/SUPPLEMENTAL_REPRODUCTION.md).
+The single-column source is [Supplemental_Material.tex](supplemental/Supplemental_Material.tex).
+No new base-network realization is needed to reproduce these figures.
 
 ## Frozen data and provenance
 
