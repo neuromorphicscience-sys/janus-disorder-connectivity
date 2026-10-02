@@ -7,6 +7,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
+from matplotlib.lines import Line2D
 
 MAG='#D81B60'; G1='#004D40'; G2='#1E88E5'; AMBER='#FFC107'; GRAY='#777777'
 MARKERS=['o','s','^','D']; STYLES=['-','--','-.',':']
@@ -27,12 +28,12 @@ def save(fig,n):
  fig.savefig(OUT/f'figS{n}.png',dpi=600);plt.close(fig);print('Fig. S'+str(n),flush=True)
 def err(ax,x,a,color,label=None,marker='o',ls='-',offset=0):
  m=a.median();lo,hi=a.quantile([.25,.75]);ax.errorbar(x+offset,m,yerr=[[m-lo],[hi-m]],color=color,marker=marker,ls=ls,capsize=2,label=label,zorder=5)
-def summary(ax,d,x,y='S',color=MAG,label=None,marker='o',ls='-'):
+def summary(ax,d,x,y='S',color=MAG,label=None,marker='o',ls='-',mfc=None):
  g=d.groupby(x)[y];m=g.median();lo=g.quantile(.25);hi=g.quantile(.75)
- ax.plot(m.index,m,color=color,marker=marker,ls=ls,label=label)
+ ax.plot(m.index,m,color=color,marker=marker,ls=ls,label=label,markerfacecolor=color if mfc is None else mfc)
  ax.fill_between(m.index.to_numpy(float),lo.to_numpy(float),hi.to_numpy(float),color=color,alpha=.12,lw=0)
-def ecdf(ax,a,color,label,ls='-'):
- x=np.sort(np.asarray(a));ax.step(x,np.arange(1,len(x)+1)/len(x),where='post',color=color,ls=ls,label=label)
+def ecdf(ax,a,color,label,ls='-',marker=None):
+ x=np.sort(np.asarray(a));ax.step(x,np.arange(1,len(x)+1)/len(x),where='post',color=color,ls=ls,label=label,marker=marker,markevery=max(1,len(x)//4),markersize=3)
 def size_axis(ax):ax.set_xscale('log',base=2);ax.set_xticks([64,128,256,512],labels=['64','128','256','512'])
 
 def s1():
@@ -127,9 +128,9 @@ def s7():
   for k,c,marker,off in [(1,G1,'o',-.1),(2,G2,'s',.1)]:
    a=g[f'G{k}_d90'];x=j+off+(np.arange(len(a))-(len(a)-1)/2)/len(a)*.10
    axs[0,0].scatter(x,a,c=c,s=7,alpha=.3,marker=marker,linewidths=0);err(axs[0,0],j,a,c,label=rf'$G_{k}$' if j==0 else None,marker=marker,offset=off)
-   ecdf(axs[1,1],a,c,rf'$G_{k},\ {L:g}$',STYLES[j])
+   ecdf(axs[1,1],a,c,rf'$G_{k},\ {L:g}$',STYLES[j],marker=marker)
  for k,c in [(1,G1),(2,G2)]:
-  for key,ls,marker in [('ell_major_over_L_','-','o'),('ell_minor_over_L_','--','s')]:summary(axs[0,1],s,'L',key+f'G{k}',c,label=rf'$G_{k}$ '+('major' if ls=='-' else 'minor'),marker=marker,ls=ls)
+  for key,ls,marker in [('ell_major_over_L_','-','o'),('ell_minor_over_L_','--','s')]:summary(axs[0,1],s,'L',key+f'G{k}',c,label=rf'$G_{k}$ '+('major' if ls=='-' else 'minor'),marker='o' if k==1 else 's',ls=ls,mfc=c if ls=='-' else 'white')
  for j,name in enumerate(['ORIGINAL','REVERSED','ROTATED_90']):
   g=direction[direction.orientation_transform.eq(name)].sort_values('graph_pair_id')
   for k,c,marker,off in [(1,G1,'o',-.1),(2,G2,'s',.1)]:
@@ -157,12 +158,15 @@ def s9():
   axs[0,0].text(j,1.05,f'n={len(g)}',transform=axs[0,0].get_xaxis_transform(),ha='center',va='bottom',fontsize=7.5)
   axs[0,1].scatter(x,g.delta_full_G2,s=7,c=GRAY,alpha=.4);err(axs[0,1],j,g.delta_full_G2,GRAY)
  for j,(w,g) in enumerate(d.groupby('W')):
-  for y,c,m,ls in [('S_full_core',MAG,MARKERS[j],STYLES[j]),('S2_core',G2,MARKERS[j],STYLES[j])]:summary(axs[1,0],g,'width_over_R',y,c,label=rf'$W={w:g}$' if y=='S2_core' else None,marker=m,ls=ls)
+  for y,c,m,ls in [('S_full_core',MAG,MARKERS[j],STYLES[j]),('S2_core',G2,MARKERS[j],STYLES[j])]:summary(axs[1,0],g,'width_over_R',y,c,label=rf'$W={w:g}$' if y=='S2_core' else None,marker=m,ls=ls,mfc=c if y=='S_full_core' else 'white')
   summary(axs[1,1],g,'width_over_R','retained_fraction',GRAY,label=rf'$W={w:g}$',marker=MARKERS[j],ls=STYLES[j])
  for ax in axs[0]:ax.set(xlabel=r'$W$',xticks=range(4),xticklabels=['.805','.815','.86','.90'],xlim=(-.5,3.5))
  axs[0,0].set(ylabel='Retained-core SCC fraction',ylim=(-.02,1.03));axs[0,0].legend(loc='center right')
  axs[0,1].set(ylabel=r'$S(G[I])-S(G_2[I])$',ylim=(0,1.03))
  axs[1,0].set(ylabel='Retained-core SCC fraction',ylim=(-.02,1.03));axs[1,0].legend(ncol=2,loc='center',bbox_to_anchor=(.52,.31))
+ object_legend=axs[1,0].legend(handles=[Line2D([],[],color=GRAY,marker='o',linestyle='',label=r'$G[I]$ (filled)'),Line2D([],[],color=GRAY,marker='o',markerfacecolor='white',linestyle='',label=r'$G_2[I]$ (open)')],loc='center',bbox_to_anchor=(.5,.86),ncol=2)
+ axs[1,0].add_artist(object_legend)
+ axs[1,0].legend(ncol=2,loc='center',bbox_to_anchor=(.52,.31))
  axs[1,1].set(ylabel='Retained-node fraction',ylim=(0,1.03));axs[1,1].legend(ncol=2,loc='lower left')
  for ax in axs[1]:ax.set(xlabel=r'$\Delta/R$',xticks=[2,4,8])
  save(fig,9)
