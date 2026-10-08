@@ -33,7 +33,7 @@ for k, key, marker, linestyle in [(1, "g1", "s", "--"), (2, "g2", "^", "-.")]:
     med = z[f"median__L_times_S{k}"]
     b.plot(z.L, med, color=C[key], ls=linestyle, marker=marker, mfc="white", label=rf"$k={k}$")
     b.fill_between(z.L, z[f"Q1__L_times_S{k}"], z[f"Q3__L_times_S{k}"], color=C[key], alpha=0.10)
-b.set(xlabel=r"$L/R$", ylabel=r"$LS_k/R$", xscale="log", ylim=(0.5, 2.1), yticks=[0.5, 1, 1.5, 2])
+b.set(xlabel=r"$L/R$", ylabel=r"$(L/R)S_k$", xscale="log", ylim=(0.5, 2.1), yticks=[0.5, 1, 1.5, 2])
 b.set_xticks([64, 128, 256, 512], ["64", "128", "256", "512"])
 b.text(0.035, 0.91, r"$W=0.805$", transform=b.transAxes, fontsize=6.5)
 b.legend(loc="upper right", fontsize=6.5, handlelength=1.1, borderpad=0.1)

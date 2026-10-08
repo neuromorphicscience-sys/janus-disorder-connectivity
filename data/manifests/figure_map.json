@@ -38,9 +38,18 @@
       "data/figure4/boundary_depth_prediction.csv",
       "data/figure4/clean_feedback_counts.csv",
       "data/figure4/clean_feedback_prediction.json",
-      "data/figure4/boundary_deletion_checks.csv"
+      "data/figure4/boundary_deletion_ensemble.csv",
+      "data/figure4/clean_depth_profile_summary.csv"
     ],
     "script": "scripts/reproduce_fig4.py",
     "output": "figures/generated/fig4.pdf"
+  },
+  "Figure S10": {
+    "inputs": [
+      "data/final_bridge/INTERVENTION_BRIDGE_SOURCE.csv",
+      "data/final_bridge/ORIENTATION_CORRELATION_SOURCE.csv"
+    ],
+    "script": "scripts/reproduce_bridge.py",
+    "output": "figures/generated/supplemental/figS10.pdf"
   }
 }

@@ -113,6 +113,11 @@ def s3():
  c=pd.DataFrame(cross);c.to_csv(OUT/'finite_size_crossings.csv',index=False)
  axs[1,0].plot(c.L,c['W_0.5'],color=MAG,marker='o');axs[1,0].set(xlabel=r'$L/R$',ylabel=r'$W_{1/2}$')
  axs[1,1].plot(c.L,c.width_10_90,color=MAG,marker='o');axs[1,1].set(xlabel=r'$L/R$',ylabel=r'$\Delta W_{10-90}$')
+ bootstrap=pd.read_csv(DATA.parent/'final_bridge/FINITE_SIZE_BOOTSTRAP_SUMMARY.csv')
+ for ax,metric in [(axs[1,0],'W_half'),(axs[1,1],'Delta_W10_90')]:
+  z=bootstrap[bootstrap.metric.eq(metric)].sort_values('L')
+  ax.errorbar(z.L,z.central,yerr=[z.central-z.CI95_low,z.CI95_high-z.central],fmt='none',color=MAG,capsize=3,lw=1)
+  ax.text(.97,.94,'95% stream-bootstrap CI',transform=ax.transAxes,ha='right',va='top',fontsize=7.5)
  for ax in axs[1]:size_axis(ax)
  save(fig,3)
 def paired_diag(ax,d,key):

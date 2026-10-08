@@ -17,7 +17,9 @@ for ax, label in zip([a, b, c], "abc"):
 
 profile = pd.read_csv(DATA / "figure4" / "boundary_depth_prediction.csv")
 a.plot(profile.d_over_R, profile.mean_Z_up_fixedN_x_averaged, color=C["benchmark"], lw=1.8)
-a.text(0.93, 0.88, "theory", transform=a.transAxes, ha="right", fontsize=7)
+empirical = pd.read_csv(DATA / "figure4" / "clean_depth_profile_summary.csv")
+a.errorbar(empirical.d_center_R, empirical.mean_Z_up, yerr=empirical.SEM_Z_up, fmt="o", ms=2.4, color=C["full"], mfc="white", lw=.7, capsize=1)
+a.text(0.95, 0.96, "theory / n=24", transform=a.transAxes, ha="right", va="top", fontsize=6.3)
 a.set(xlabel=r"$d/R$", ylabel=r"$\langle Z_\uparrow(d)\rangle$", xlim=(0, 0.22), ylim=(-0.1, 7.3), xticks=[0, 0.1, 0.2], yticks=[0, 3, 6])
 
 clean = pd.read_csv(DATA / "figure4" / "clean_feedback_counts.csv")
@@ -35,15 +37,19 @@ b.text(0.95, 0.1, "theory", transform=b.transAxes, ha="right", color=C["neutral"
 b.set(xlim=(-0.36, 0.36), ylim=(870, 935), ylabel=r"$|F|$", xticks=[0])
 b.set_xticklabels([r"$W=0\ (n=24)$"], fontsize=7)
 
-deletion = pd.read_csv(DATA / "figure4" / "boundary_deletion_checks.csv")
-z = deletion[(deletion.cut_kind.eq("all_sides")) & (deletion.removed_width.eq(4))].sort_values("W")
-assert len(z) == 4
-for j, (_, row) in enumerate(z.iterrows()):
-    c.plot([j, j], [row.G_fraction_remaining, row.G2_fraction_remaining], color=C["connector"], lw=1, zorder=1)
-c.plot(range(4), z.G_fraction_remaining, "o", color=C["full"], ms=4, mfc="white", label=r"$G[I]$")
-c.plot(range(4), z.G2_fraction_remaining, "^", color=C["g2"], ms=4, mfc="white", label=r"$G_2[I]$")
-c.set(yscale="log", ylabel=r"largest SCC / $|I|$", xlabel=r"realization ($W$)", xlim=(-0.4, 3.4), ylim=(0.00085, 1.7), xticks=range(4))
+deletion = pd.read_csv(DATA / "figure4" / "boundary_deletion_ensemble.csv")
+z = deletion[deletion.width_over_R.eq(4)]
+for j, (W, group) in enumerate(z.groupby("W")):
+    jitter=(np.arange(len(group))%17-8)/180
+    vo=group.S_full_core.to_numpy();vr=group.S2_core.to_numpy()
+    for h in range(len(group)):
+        c.plot([j-.13+jitter[h],j+.13+jitter[h]],[vo[h],vr[h]],color=C["connector"],alpha=.23,lw=.35,zorder=1)
+    for delta,values,color,marker,label in [(-.13,vo,C["full"],"o",r"$G[I]$"),(.13,vr,C["g2"],"^",r"$G_2[I]$")]:
+        c.scatter(j+delta+jitter,values,s=4.5,facecolors="none",edgecolors=color,marker=marker,alpha=.28,lw=.35)
+        q=np.quantile(values,[.25,.5,.75])
+        c.errorbar(j+delta,q[1],yerr=[[q[1]-q[0]],[q[2]-q[1]]],fmt=marker,color=color,ms=4,capsize=2,lw=1.1,label=label if j==0 else None)
+    c.text(j,1.20,f"n={len(group)}",ha="center",va="center",fontsize=6.5)
+c.set(yscale="log",ylabel=r"largest SCC / $|I|$",xlabel=r"$W$ (4R deletion)",xlim=(-.4,3.4),ylim=(.00085,1.7),xticks=range(4))
 c.set_xticklabels([".805", ".815", ".860", ".900"])
-c.legend(loc="lower right", ncol=2, fontsize=7, handlelength=1.0, columnspacing=1.0)
-
-save(fig, 4)
+c.legend(loc="lower right",ncol=2,fontsize=7,handlelength=1,columnspacing=1)
+save(fig,4)

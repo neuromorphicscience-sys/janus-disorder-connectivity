@@ -100,3 +100,7 @@ The manuscript has not been assigned a publication DOI. Citation metadata for th
 Source code is licensed under the BSD 3-Clause License. Data and documentation are licensed under CC BY 4.0 unless otherwise noted. See `LICENSE` and `LICENSE-DATA`.
 
 Third-party components, including embedded fonts, remain subject to their original licenses and are not relicensed by this repository.
+
+## Final matched bridge and submission diagnostics
+
+The final source update adds the 48-pair intervention–filtration bridge, classifier coverage audit, shared-stream crossover intervals, clean depth profile and complete Main Fig.4(c) deletion ensemble. See [definitions and source data](data/final_bridge/README.md) and [reproduction notes](docs/FINAL_BRIDGE_REPRODUCTION.md). The reassigned strict cores have no nontrivial low-order recurrence, making their conditional concentration undefined; the intervention and natural-disorder filtration are complementary evidence.

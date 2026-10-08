@@ -1,0 +1,284 @@
+{
+  "historical_induced_subgraphs": [
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced0",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced1",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced2",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 1,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced3",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 5,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced4",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 4,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced5",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 1,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced6",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 2,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.75_r11_induced7",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 8,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.75_r11"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced0",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced1",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced2",
+      "F1_count": 2,
+      "F2_exact_count": 1,
+      "F_count": 14,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced3",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 10,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced4",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 4,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced5",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 7,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced6",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 8,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.7975_r94_induced7",
+      "F1_count": 2,
+      "F2_exact_count": 0,
+      "F_count": 6,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.7975_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced0",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced1",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced2",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 9,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced3",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 11,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced4",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 4,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced5",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 3,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced6",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 3,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.805_r94_induced7",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 7,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.805_r94"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced0",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced1",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced2",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 2,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced3",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 5,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced4",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 9,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced5",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 1,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced6",
+      "F1_count": 1,
+      "F2_exact_count": 2,
+      "F_count": 15,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.815_r33_induced7",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 8,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.815_r33"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced0",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced1",
+      "F1_count": 0,
+      "F2_exact_count": 0,
+      "F_count": 0,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced2",
+      "F1_count": 2,
+      "F2_exact_count": 4,
+      "F_count": 11,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced3",
+      "F1_count": 9,
+      "F2_exact_count": 5,
+      "F_count": 24,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced4",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 5,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced5",
+      "F1_count": 3,
+      "F2_exact_count": 2,
+      "F_count": 25,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced6",
+      "F1_count": 3,
+      "F2_exact_count": 0,
+      "F_count": 16,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    },
+    {
+      "name": "gaussian_iid_L128_q7_W0.9_r1_induced7",
+      "F1_count": 1,
+      "F2_exact_count": 0,
+      "F_count": 7,
+      "parent_graph_id": "gaussian_iid_L128_q7_W0.9_r1"
+    }
+  ]
+}
