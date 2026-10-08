@@ -4,10 +4,19 @@ import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.ticker import NullLocator
+from matplotlib.ticker import AutoMinorLocator, LogLocator, NullFormatter, NullLocator
 from _figure_common import DATA, COLORS as C, apply_style, panel, save
 
 apply_style()
+# Retain the frozen reference figure's tick, spine, label, and legend style.
+plt.rcParams.update({
+    "axes.linewidth": .7, "xtick.major.size": 3, "ytick.major.size": 3,
+    "xtick.minor.size": 1.7, "ytick.minor.size": 1.7,
+    "xtick.major.width": .65, "ytick.major.width": .65,
+    "xtick.minor.width": .5, "ytick.minor.width": .5,
+    "xtick.major.pad": 3, "ytick.major.pad": 3,
+    "axes.labelpad": 2, "legend.frameon": False, "legend.handlelength": 1.6,
+})
 fig, axes = plt.subplots(2, 2, figsize=(86 / 25.4, 91 / 25.4))
 fig.subplots_adjust(left=0.155, right=0.98, bottom=0.12, top=0.94, wspace=0.55, hspace=0.56)
 a, b, c, d = axes.ravel()
@@ -64,4 +73,11 @@ d.errorbar(probs, quartiles[1], yerr=np.array([quartiles[1] - quartiles[0], quar
 d.set(xlabel="quantile level $u$", ylabel=r"$\Delta\ell_u/R$", xlim=(0.06, 0.99), ylim=(-0.0016, 0.0016), xticks=[0.1, 0.5, 0.9], yticks=[-0.001, 0, 0.001])
 d.ticklabel_format(axis="y", style="sci", scilimits=(-3, -3), useMathText=True)
 
+for ax in axes.ravel():
+    for axis, scale in [(ax.xaxis, ax.get_xscale()), (ax.yaxis, ax.get_yscale())]:
+        if scale == "linear":
+            axis.set_minor_locator(AutoMinorLocator(2))
+        elif scale == "log":
+            axis.set_minor_locator(LogLocator(base=10, subs=(2, 5)))
+            axis.set_minor_formatter(NullFormatter())
 save(fig, 2)
