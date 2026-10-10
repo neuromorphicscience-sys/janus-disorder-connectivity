@@ -5,11 +5,12 @@ From the repository root, with the project and requirements installed:
     python scripts/validate_archive.py
     python scripts/analyze_final_si.py --data data/supplemental_final --output outputs/supplemental_statistics
     python scripts/validate_si_classifier.py --data data/supplemental_final --output outputs/supplemental_classifier
+    python scripts/validate_full_graph_classifier.py
     python scripts/reproduce_supplemental.py
 
-The plotting command creates nine vector PDFs, editable SVGs, and 600 dpi PNGs in
+The plotting command creates ten vector PDFs (S1-S10), editable SVGs, and 600 dpi PNGs in
 figures/generated/supplemental. Every point comes from the CSV files listed in
-data/supplemental_final/README.md. The font is DejaVu Sans, bundled with Matplotlib.
+data/supplemental_final/README.md (S1-S9) and data/final_bridge/README.md (S10). The font is DejaVu Sans, bundled with Matplotlib.
 Reference exports are supplied in figures/reference/supplemental.
 
 To additionally export legend bounds and data/text intersection diagnostics:
@@ -49,4 +50,10 @@ Optional computational replay of existing frozen identities remains available th
 scripts/replay_final_hardening.py and archived manifests in data/supplemental.
 It is separate from source-table figure reproduction; see the script's --help.
 The production feedback classifier is sparse and matrix free through order two.
-The tiny validation graphs are archived toy definitions, not new physical realizations.
+The five archived toys and induced-subgraph checks are retained. The separate
+full-graph classifier check covers all 4096 four-vertex directed graphs and 26 fixed
+complete model graphs (N=96-1536), with two unpruned reference algorithms. It writes
+case summaries and edge comparisons to outputs/full_graph_classifier; archived
+results are in data/classifier_full_graph. These checks do not augment the physical
+ensembles in the figures. See CLASSIFIER_CORRECTNESS.md for the bound proof and
+precise reproduction command.

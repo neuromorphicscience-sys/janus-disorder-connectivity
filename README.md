@@ -13,7 +13,7 @@ The repository provides:
 - fixed-multiset spatial reassignment and fidelity observables;
 - surface and internal recurrence observables;
 - fixed-N local-alignment and clean-boundary predictions;
-- source tables and scripts for manuscript Figs. 1–4 and Supplemental Figs. S1–S9;
+- source tables and scripts for manuscript Figs. 1–4 and Supplemental Figs. S1–S10;
 - frozen correlation-length intervention and boundary-deletion replays;
 - parameter controls and descriptive finite-size restoration diagnostics.
 
@@ -72,14 +72,18 @@ The reference PDFs in figures/reference are the manuscript versions. Small rende
 
     python scripts/analyze_final_si.py --data data/supplemental_final --output outputs/supplemental_statistics
     python scripts/validate_si_classifier.py --data data/supplemental_final --output outputs/supplemental_classifier
+    python scripts/validate_full_graph_classifier.py
     python scripts/reproduce_supplemental.py
 
 These commands recompute descriptive statistics, independently validate the five archived
-toy graphs, and reproduce Figs. S1–S9 as vector PDF/SVG and 600 dpi PNG.
+toy graphs, compare every feedback edge on exhaustive four-vertex topologies and complete
+small-to-medium model graphs with two unpruned oracles, and reproduce Figs. S1–S10 as vector PDF/SVG and 600 dpi PNG.
 Exact sample counts, rejected intervention attempts, source-table mappings, and optional
 frozen-graph replay are documented in [Supplemental reproduction](docs/SUPPLEMENTAL_REPRODUCTION.md).
 The single-column source is [Supplemental_Material.tex](supplemental/Supplemental_Material.tex).
-No new base-network realization is needed to reproduce these figures.
+No new base-network realization is needed to reproduce these figures. The separate
+full-graph algorithm check generates only its fixed validation cases; it does not change
+the frozen physical ensembles. See [classifier proof and validation](docs/CLASSIFIER_CORRECTNESS.md).
 
 ## Frozen data and provenance
 

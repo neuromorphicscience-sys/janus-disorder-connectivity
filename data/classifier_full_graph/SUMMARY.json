@@ -1,0 +1,37 @@
+{
+  "all_comparisons_passed": true,
+  "oracle_count": 2,
+  "production_classifier_sha256": "bdcc34bffb1f23f08d4be74aa65b27029ee436cea0476983105ac913ec119094",
+  "exhaustive_four_vertex": {
+    "graphs": 4096,
+    "edges": 24576,
+    "downward": 12288,
+    "order1": 7136,
+    "order2": 1984,
+    "gt2_or_infinite": 3168,
+    "mismatches": 0
+  },
+  "complete_model": {
+    "edges": 96768,
+    "downward": 83966,
+    "order1": 3278,
+    "order2": 4395,
+    "gt2_or_infinite": 5129,
+    "mismatches": 0,
+    "graphs": 26,
+    "min_N": 96,
+    "max_N": 1536
+  },
+  "archived_subgraphs": {
+    "graphs": 80,
+    "edges": 9512,
+    "order1": 107,
+    "order2": 21,
+    "archived_labels_unchanged": true,
+    "negative_translation_unchanged": true
+  },
+  "negative_coordinate_ceiling_regression": true,
+  "witnesses_checked": true,
+  "filtered_edges_and_scc_partitions_checked": true,
+  "scope": "Algorithm validation only; frozen manuscript ensembles unchanged"
+}

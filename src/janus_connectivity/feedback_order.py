@@ -88,7 +88,10 @@ def classify_order2_matrix_free(d_ptr, d_idx, r_ptr, r_idx, y, u, v,
         stamp = i + 1
         # Any partner source u_j satisfies y(u_j)>=y(u_i)-max_up_dy.
         # Its target v_j satisfies y(v_j)<=y(v_i)+max_up_dy.
-        high_edge = y[v[i]] + max_up_dy
+        # Round the gain outward before adding it: a rounded subtraction may
+        # underestimate the true gain, and cancellation at negative y can make
+        # one nextafter of the final sum alone insufficient (e.g. -1 + 1.2).
+        high_edge = y[v[i]] + np.nextafter(max_up_dy, np.inf)
         high_edge = np.nextafter(high_edge, np.inf)
 
         # D-reverse search enumerates every v_j that reaches u_i.

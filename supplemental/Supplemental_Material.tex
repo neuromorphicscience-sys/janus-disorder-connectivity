@@ -1,19 +1,28 @@
 \RequirePackage{fix-cm}
 \documentclass[11pt]{article}
-\usepackage[a4paper,margin=18mm]{geometry}
+\usepackage[a4paper,left=18mm,right=18mm,top=15mm,bottom=15mm]{geometry}
 \usepackage{amsmath,amssymb,bm,graphicx,booktabs,placeins,float}
+\usepackage[font=small,skip=6pt]{caption}
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext,newtxmath,microtype}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
-\graphicspath{{../figures/generated/supplemental/}}
+\graphicspath{{../figures/reference/supplemental/}{../figures/generated/supplemental/}}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\theequation}{S\arabic{equation}}
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsection}{\Alph{subsection}}
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
 \setlength{\parindent}{1.2em}
-\setlength{\parskip}{0.25em}
-\setlength{\textfloatsep}{12pt}
+\setlength{\parskip}{0.15em}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{10pt}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.8}
 \begin{document}
 \begin{center}
 {\Large\bfseries Supplemental Material for\\[3pt]
@@ -33,17 +42,17 @@ This supplement describes the numerical ensembles, parameter controls, spatial-i
 \paragraph*{Numerical conventions and sample inventory.}
 Positions are independent uniform points in an open square, with $N=\operatorname{round}(\sigma L^2)$. Source $i$ retains up to $q$ distinct targets within $2R$, ranked by their projection on $\bm e_i=(\sin\theta_i,-\cos\theta_i)$. Gaussian directions have $\theta_i=Wz_i$ modulo $2\pi$, with independent standard-normal $z_i$. Graphs have no self-loops. Continuous projection ties have probability zero; vertex indices resolve numerical ties reproducibly. Unless stated otherwise, $q=7$, $\sigma R^2=24$, and $R$ is the length unit. $S$ is the largest strongly connected component (SCC) size divided by $N$, including singleton components. Points denote individual graph realizations; summary markers or curves are medians, with interquartile ranges (IQRs).
 
-Table~\ref{tab:inventory} lists the cohorts used here. They overlap and their counts are not additive numbers of independent graphs. Each source table carries the applicable graph identifiers or hashes, and the accompanying manifests give archived seed identities. The 48 spatial-intervention pairs use 16 historical geometry and normal-disorder streams at each of three $W$ values. The same streams recur across $W$, and field seeds recur across correlation lengths; pooled summaries are descriptive, rather than independent-replicate inference. All 192 surrogate attempts and 576 deletion records used below were available in the archive before this supplement was assembled.
+Table~\ref{tab:inventory} lists the overlapping ensembles used here. Source tables provide realization identifiers and random seeds. The 48 spatial-intervention pairs share 16 geometry and normal-disorder streams across three $W$ values, and the same field seeds recur across correlation lengths. Pooled medians and IQRs describe the spread across these dependent graph-condition observations. The scale comparison contains 192 field reassignments, and the deletion ensemble contains 576 graph-width observations.
 
 
 \begin{table}[H]\centering\small
-\caption{Ensembles used in the supplemental figures at $\sigma R^2=24$. Conditions count distinct parameter combinations within each row; the realization-count range is per condition. The deletion row counts graph/width observations (192 distinct graphs at three widths), and direction controls count 24 matched bases at three orientations. Exact grids, sample counts, hashes and main/SI uses are supplied in the machine-readable companion.}\label{tab:inventory}
+\caption{Ensembles used in the supplemental figures at $\sigma R^2=24$. Conditions count distinct parameter combinations within each row; the realization-count range is per condition. The deletion row counts graph/width observations (192 distinct graphs at three widths), and direction controls count 24 matched bases at three orientations. Exact parameter grids, sample counts and realization identifiers accompany the source tables.}\label{tab:inventory}
 \begin{tabular}{lrrlrrr}
 \toprule
 Dataset & $q$ & $L/R$ & Control & Conditions & $n$/condition & Total \\
 \midrule
 Full Gaussian sizes & 7 & 64,128,256,512 & $W$ & 81 & 4--150 & 4634 \\
-Canonical intervention & 7 & 128 & $W$ & 3 & 16 & 48 \\
+Spatial intervention & 7 & 128 & $W$ & 3 & 16 & 48 \\
 Direction controls & 7 & 128 & $\Delta\theta$ & 3 & 24 & 72 \\
 Largest SCC geometry & 7 & 64,128,256,512 & $W$ & 28 & 16--96 & 784 \\
 Internal recurrence & 7 & 128 & $W$ & 24 & 8--96 & 1528 \\
@@ -62,7 +71,7 @@ Anisotropic rank fields & 7 & 128 & $\alpha$ & 73 & 16--32 & 1840 \\
 \FloatBarrier
 \section{Robustness of disorder-restored connectivity}
 \subsection{Connection-budget dependence}
-The Gaussian scans cover $q=4,5,6,7,8,10,12$ at $L/R=128$. Figure~\ref{fig:q}(a) displays the preselected budgets $4,5,7,10$, and panel (b) includes all seven budgets at their respective largest sampled disorder values. Restoration is observed across the tested budgets. Their windows and sampled endpoints differ, so the endpoint summary compares available high-disorder conditions rather than a common $W$ or a minimum connection budget.
+The Gaussian scans cover $q=4,5,6,7,8,10,12$ at $L/R=128$. Figure~\ref{fig:q}(a) shows budgets $4,5,7,10$, and panel (b) includes all seven at their respective largest sampled disorder values. Restoration occurs across the tested budgets, with budget-dependent windows and sampled endpoints. Panel (b) summarizes the available high-disorder conditions for each budget.
 
 
 \begin{figure}[H]\centering
@@ -81,10 +90,10 @@ The correlated controls retain a Gaussian orientation multiset at $W=0.82$. Sort
 \caption{Disorder-family and spatial-correlation controls at $q=7$, $L/R=128$, $\sigma R^2=24$. (a)--(d) Native controls $W,A,\kappa,b$ for Gaussian, bounded uniform, von Mises and wrapped Laplace; total counts are 1528,336,416,800. (e),(f) Rank-field mixing $\alpha$ at Gaussian $W=0.82$; labels give actual $(\ell_x,\ell_y)$, with line styles and markers distinguishing scales. Isotropic totals at $(2,2),(4,4),(6,6),(12,12)R$ are 896,384,896,864; anisotropic totals at $(12,2),(2,12)R$ are 928,912. Each sampled condition contains 8--96 graphs. Curves are medians and bands are IQRs.}\label{fig:families}
 \end{figure}
 
-\subsection{Finite-size restoration diagnostics}
-The combined Gaussian cohort contains 4,634 archived graphs at $L/R=64,128,256,512$ and actual sampled $W$ in $[0.75,0.90]$. Figure~\ref{fig:finite}(a) includes every observation. Condition-level medians, IQRs, variance and archived bootstrap intervals accompany the source tables. A crossing $W_p(L)$ is defined only when adjacent sampled medians bracket $S=p$, by linear interpolation within that bracket. Here each size has a unique upward bracket for $p=0.1,0.5,0.9$.
+\subsection{Finite-size restoration window}
+The combined Gaussian cohort contains 4,634 graph realizations at $L/R=64,128,256,512$ and sampled $W$ in $[0.75,0.90]$. Figure~\ref{fig:finite}(a) includes every observation; condition medians, IQRs, variances and bootstrap intervals accompany the source tables. A crossing $W_p(L)$ is the linear interpolation between adjacent sampled medians bracketing $S=p$. Each size has a unique upward bracket for $p=0.1,0.5,0.9$.
 
-The half-height crossings are $0.808,0.802,0.798,0.795$ in increasing size order. Corresponding 10--90\% widths are $0.044,0.029,0.020,0.013$. Table~\ref{tab:bootstrap} reports uncertainty from 4,000 shared-stream bootstrap replicates per size. Exact geometry/orientation seed pairs are resampled jointly across $W$; each replicate recomputes condition medians. Only unique upward brackets are interpolated, without monotonic fitting. Width intervals are conditional on both endpoint levels remaining bracketed; the successful fraction is reported. The finite-size window therefore drifts toward smaller $W$ at half height and sharpens across these sizes. This descriptive comparison uses the sampled brackets. The larger diagnostic cohort is distinct from the main Fig.~1 display cohort, in which the $L/R=128$ series includes the additional lower-disorder scan.
+The half-height crossings are $0.808,0.802,0.798,0.795$ in increasing size order. Corresponding 10--90\% widths are $0.044,0.029,0.020,0.013$. Table~\ref{tab:bootstrap} reports uncertainty from 4,000 shared-stream bootstrap replicates per size. Exact geometry/orientation seed pairs are resampled jointly across $W$; each replicate recomputes condition medians. Each crossing uses linear interpolation in a unique upward bracket. Width intervals are conditional on both endpoint levels remaining bracketed; the successful fraction is reported. The finite-size window therefore drifts toward smaller $W$ at half height and sharpens across these sizes. These quantities characterize the restoration location and width over the investigated sizes. The larger diagnostic cohort is distinct from the main Fig.~1 display cohort, in which the $L/R=128$ series includes the additional lower-disorder scan.
 
 
 \begin{figure}[H]\centering
@@ -93,7 +102,7 @@ The half-height crossings are $0.808,0.802,0.798,0.795$ in increasing size order
 \end{figure}
 
 \begin{table}[H]\centering\small
-\caption{Descriptive finite-size crossovers with percentile 95\% intervals from shared-stream resampling. Successful fractions refer to bracket-valid replicates; no thermodynamic threshold or exponent is estimated.}\label{tab:bootstrap}
+\caption{Descriptive finite-size crossovers with percentile 95\% intervals from shared-stream resampling. Successful fractions refer to bracket-valid replicates. Location and width characterize the finite-size restoration window over the investigated sizes.}\label{tab:bootstrap}
 \begin{tabular}{rllll}\toprule
 $L/R$ & $W_{1/2}$ [95\% CI] & valid & $\Delta W_{10-90}$ [95\% CI] & valid \\
 \midrule
@@ -108,19 +117,19 @@ $L/R$ & $W_{1/2}$ [95\% CI] & valid & $\Delta W_{10-90}$ [95\% CI] & valid \\
 \subsection{Complete matched-pair fidelity}
 For each point cloud, sorted orientations are reassigned by the ranks of an independent Gaussian-smoothed field sampled by bilinear interpolation on a $256\times256$ unit grid. The point crop is shifted by $(64R,64R)$. Positions, the angle multiset, candidate counts and every source outdegree are preserved. Three edge marginals are measured separately for every pair: length, wrapped angle relative to its source direction, and vertical displacement.
 
-Both the Kolmogorov--Smirnov (KS) distance and normalized Wasserstein distance must be at most $0.03$. The Wasserstein normalizers are $2R,\pi,2R$, respectively. The empirical rate is $I_0=-\min_{0\leq t\leq32}\log\sum_b h_b e^{t x_b}$, with normalized frequencies $h_b$ and centers $x_b$ in 2048 bins on $[-2R,2R]$, using $R$ as the numerical length unit. Its relative change $|I_{0,r}-I_{0,o}|/\max(I_{0,o},0.01)$ must be at most $0.03$. At least $25\%$ of original edges must change. These same criteria apply at every correlation length, and fidelity is recorded before evaluating surrogate connectivity.
+Both the Kolmogorov--Smirnov (KS) distance and normalized Wasserstein distance must be at most $0.03$. The Wasserstein normalizers are $2R,\pi,2R$, respectively. The empirical rate is $I_0=-\min_{0\leq t\leq32}\log\sum_b h_b e^{t x_b}$, with normalized frequencies $h_b$ and centers $x_b$ in 2048 bins on $[-2R,2R]$, using $R$ as the numerical length unit. Its relative change $|I_{0,r}-I_{0,o}|/\max(I_{0,o},0.01)$ must be at most $0.03$. At least $25\%$ of original edges must change. The same criteria apply at every correlation length, with marginal fidelity evaluated before surrogate connectivity.
 
-The original $\ell=4R$ value was selected from marginal-fidelity criteria before any surrogate connectivity outcome, as documented by the archived protocol, fidelity-only pilot and pre-outcome addendum. All 48 main pairs meet the criteria (Fig.~\ref{fig:fidelity} and Table~\ref{tab:fidelity}). Pair indices group the 16 bases at each $W=0.79,0.80,0.81$. These pairwise diagnostics complement the pooled marginal displays of main Fig.~2.
+The scale $\ell=4R$ is fixed by the marginal-fidelity criteria before evaluating surrogate connectivity. All 48 main pairs meet the criteria (Fig.~\ref{fig:fidelity} and Table~\ref{tab:fidelity}). Pair indices group the 16 bases at each $W=0.79,0.80,0.81$; these pairwise diagnostics complement the pooled marginal displays of main Fig.~2.
 
 
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth]{figS4.pdf}
-\caption{Complete fidelity diagnostics for all 48 $\ell=4R$ pairs at $q=7$, $\sigma R^2=24$, $L/R=128$, with 16 pairs at each $W=0.79,0.80,0.81$. (a)--(c) Individual pairwise KS distances (circles) and normalized Wasserstein distances (squares) for edge length, source-relative angle and vertical displacement. (d) Relative empirical-rate change (circles, left axis) and changed-edge fraction (squares, right axis). Amber dashed lines mark the 0.03 upper limits; the dotted line marks the 0.25 changed-edge lower limit. Every pair is displayed; no pooled distance is substituted for a pairwise criterion.}\label{fig:fidelity}
+\caption{Complete fidelity diagnostics for all 48 $\ell=4R$ pairs at $q=7$, $\sigma R^2=24$, $L/R=128$, with 16 pairs at each $W=0.79,0.80,0.81$. (a)--(c) Individual pairwise KS distances (circles) and normalized Wasserstein distances (squares) for edge length, source-relative angle and vertical displacement. (d) Relative empirical-rate change (circles, left axis) and changed-edge fraction (squares, right axis). Amber dashed lines mark the 0.03 upper limits; the dotted line marks the 0.25 changed-edge lower limit. Every pair is displayed and evaluated against the fidelity criteria.}\label{fig:fidelity}
 \end{figure}
 
 
 \begin{table}[H]\centering\small
-\caption{Canonical $\ell=4R$ fidelity summary over all 48 pairs. W1 denotes Wasserstein distance after the listed normalization. IQR endpoints and maximum are computed across individual pairs. For changed-edge fraction the lower-limit criterion is relevant; its observed minimum is 0.74290. Machine-readable data also give identical diagnostics for all four correlation lengths.}\label{tab:fidelity}
+\caption{Spatial-intervention fidelity at $\ell=4R$ over all 48 pairs. W1 denotes Wasserstein distance after the listed normalization. IQR endpoints and maximum are computed across individual pairs. For changed-edge fraction the lower-limit criterion is relevant; its observed minimum is 0.74290. Machine-readable data also give identical diagnostics for all four correlation lengths.}\label{tab:fidelity}
 \begin{tabular}{lllrrrr}
 \toprule
 Metric & Normalizer & Criterion & Median & IQR & Maximum & Pass \\
@@ -136,31 +145,47 @@ Changed-edge fraction & $|E_o|$ & $\geq0.25$ & 0.7467 & [0.7443,0.7491] & 0.7509
 \bottomrule\end{tabular}\end{table}
 
 \subsection{Correlation-length sensitivity}
-The archived extension predeclared $\ell/R=1,2,4,8$ on the same 48 base point clouds and orientation multisets. Each base reuses the same white-noise field across lengths, changing only its smoothing width. One field is attempted at each length, without retries or replacement of failed attempts. The historical seed rule reproduces the original $4R$ intervention hashes and SCC values.
+The same 48 base point clouds and orientation multisets are compared at $\ell/R=1,2,4,8$. Each base uses the same white-noise field across lengths, changing only its smoothing width, and contributes one field at each length. All pairs are evaluated with the same marginal-fidelity criteria.
 
-Accepted counts are 48/48, 48/48, 48/48 and 42/48. The six $8R$ rejections fail the unchanged relative-rate limit, with values 0.0349--0.0409; their connectivity outcomes were not evaluated. Their complete fidelity diagnostics remain in Fig.~\ref{fig:ell}(c),(d) and the source table. Among accepted pairs, median $\log_{10}(S_r/S_o)$ values are $-2.720,-3.267,-3.648,-3.718$; all 186 accepted reassignments suppress $S$. Connectivity suppression thus persists across the accepted correlation scales while the same marginal-fidelity criteria remain satisfied.
+Accepted counts are 48/48, 48/48, 48/48 and 42/48. The six $8R$ rejections fail the unchanged relative-rate limit, with values 0.0349--0.0409; connectivity statistics use the 186 accepted pairs. Fidelity diagnostics for all 192 attempts appear in Fig.~\ref{fig:ell}(c),(d) and the source table. Among accepted pairs, median $\log_{10}(S_r/S_o)$ values are $-2.720,-3.267,-3.648,-3.718$; all 186 accepted reassignments suppress $S$. Connectivity suppression thus persists across the accepted correlation scales while the same marginal-fidelity criteria remain satisfied.
 
 
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth]{figS5.pdf}
-\caption{Correlation-length sensitivity on 48 archived bases at each $\ell/R=1,2,4,8$, with $q=7$, $\sigma R^2=24$, $L/R=128$ and 16 bases at each $W=0.79,0.80,0.81$. (a) Accepted individual log connectivity ratios, median and IQR; annotations give accepted/attempted counts. (b) Accepted paired local-statistic ratios with median/IQR. (c) Maximum marginal KS and normalized Wasserstein distances for every attempt. (d) Relative-rate change and changed-edge fraction for every attempt; crosses identify six rejected rate values. Dashed upper limits are 0.03, and the dotted changed-edge lower limit is 0.25. Rejected connectivity outcomes are absent from (a),(b). Common seeds across $W$ and $\ell$ make pooled summaries descriptive.}\label{fig:ell}
+\caption{Correlation-length sensitivity on 48 matched bases at each $\ell/R=1,2,4,8$, with $q=7$, $\sigma R^2=24$, $L/R=128$ and 16 bases at each $W=0.79,0.80,0.81$. (a) Accepted individual log connectivity ratios, median and IQR; annotations give accepted/attempted counts. (b) Accepted paired local-statistic ratios with median/IQR. (c) Maximum marginal KS and normalized Wasserstein distances for every attempt. (d) Relative-rate change and changed-edge fraction for every attempt; crosses identify six rejected rate values. Dashed upper limits are 0.03, and the dotted changed-edge lower limit is 0.25. Panels (a),(b) summarize accepted pairs; (c),(d) include all 192 attempts. Common seeds across $W$ and $\ell$ make pooled summaries descriptive.}\label{fig:ell}
 \end{figure}
 
 \FloatBarrier
 \section{Low-order feedback structure and geometry}
 \subsection{Feedback-order classifier validation}
-The strictly downward graph $D_0$ is acyclic. An upward edge has order one when its target reaches its source through $D_0$. An order-two witness uses one additional upward edge, joined by downward paths. Figure~\ref{fig:classifier} illustrates these two return orders. The sparse implementation tests these witnesses using forward and reverse DAG searches and endpoint buckets. Geometric search bounds retain every possible partner. It stores adjacency arrays and linear-size visit markers; the edge decomposition is $E=D_0\cup F$. Retaining feedback edges of order at most $k$ gives $F_{\leq1}\subseteq F_{\leq2}\subseteq F$ and $G_1\subseteq G_2\subseteq G$.
+The strictly downward graph $D_0$ is acyclic. An upward edge has order one when its target reaches its source through $D_0$. An order-two witness uses one additional upward edge, joined by downward paths. Figure~\ref{fig:classifier} illustrates these two return orders. The sparse implementation tests these witnesses using forward and reverse DAG searches and endpoint buckets, with adjacency arrays and linear-size visit markers; the edge decomposition is $E=D_0\cup F$. Retaining feedback edges of order at most $k$ gives $F_{\leq1}\subseteq F_{\leq2}\subseteq F$ and $G_1\subseteq G_2\subseteq G$.
 
-The historical sampling code draws eight induced subsets per parent with an RNG seeded by the first 16 hexadecimal digits of its edge hash: two uniformly random 64-vertex subsets, followed by six weak-graph breadth-first neighborhoods with shuffled neighbor order. The ten uniform subsets contain only one edge in total and no feedback. The 30 neighborhoods contain 84--174 edges (median 102.5), with 31 order-one and 14 order-two positive labels in total. This uneven coverage motivated a predeclared deterministic supplement on the same five parents: eight archived upward edges at evenly spaced edge indices seed 128-vertex local subsets, containing both endpoints and the closest vertices to their midpoint. Selection precedes oracle comparison and never uses disagreement. These 40 subsets contain 81--436 edges (median 152.5), adding 76 order-one and seven order-two labels. Every edge of all 80 historical/local subsets agrees with an independent bounded-feedback-cost oracle; downward edges are checked as backbone edges and all feedback labels are checked individually. The five unchanged toys also pass independent edge-wise tests. Complete densities, label counts, nontrivial SCC counts, vertex indices and edge-wise oracle results are supplied. Higher or infinite return-order edges remain outside $F_{\leq2}$.
+\paragraph*{Completeness of the search bounds.}
+Write $f_i=(u_i,v_i)$ and let $x\leadsto_D z$ include a zero-length path. Strict descent along $D_0$ makes the order-one search exact when restricted to $y\geq y(u_i)$. If no such return exists, an order-two witness is precisely a distinct $f_j=(u_j,v_j)$ satisfying
+\begin{equation}
+v_i\leadsto_D u_j,\qquad v_j\leadsto_D u_i.
+\label{eq:order2witness}
+\end{equation}
+These paths concatenate with $f_i,f_j$ to close a return with one additional upward edge; conversely every such return has this form. Put $h_j=y(v_j)-y(u_j)$ and $H=\max_{f\in F}h_f$ (with no upward edges there is nothing to classify). Monotonicity and $h_j\leq H$ give
+\begin{equation}
+y(u_i)-H\leq y(u_j)\leq y(v_i),\qquad
+y(u_i)\leq y(v_j)\leq y(v_i)+H.
+\label{eq:searchbounds}
+\end{equation}
+The reverse search from $u_i$ therefore loses no valid $v_j$ when capped at $y(v_i)+H$: every intermediate vertex on its reversed downward path lies below that cap. The implementation rounds both the maximum height gain and the resulting ceiling outward, retaining the bound under floating-point cancellation. Let $C_i$ contain all distinct upward edges whose targets this search reaches, irrespective of their own order. If $C_i$ is empty, no partner exists. Otherwise set $m_i=\min_{j\in C_i}y(u_j)$. Every downward path from $v_i$ to a valid $u_j$ stays at $y\geq y(u_j)\geq m_i$, so the forward search may stop below $m_i$ without loss. Endpoint buckets enumerate all edges incident on each visited endpoint; equality and shared endpoints are retained. Thus the bounds preserve every witness in Eq.~\eqref{eq:order2witness}, including partners that themselves have order one.
 
+The independent bounded-feedback-cost check also retains five toys and 80 induced subgraphs from five parent realizations. The ten uniform $N=64$ subsets contain one downward edge in total. Thirty weak-graph breadth-first $N=64$ neighborhoods contain 84--174 edges (median 102.5), with 31 order-one and 14 order-two labels. Forty feedback-centered $N=128$ subsets contain 81--436 edges (median 152.5), with 76 order-one and seven order-two labels. The latter use eight evenly indexed upward edges per parent, both endpoints and the nearest vertices to their midpoint. All selections depend only on fixed seeds or geometry, independently of the comparison. Every edge agrees, including 107 order-one and 21 order-two positives across the subsets; the five toys also agree. Public scripts and source tables specify the selection rules, vertex indices and edge-wise comparisons. Edges of higher or infinite return order lie outside $F_{\leq2}$.
+
+\paragraph*{Exhaustive checks on complete graphs.}
+The command\par\noindent\texttt{python scripts/validate\_full\_graph\_classifier.py}\par\noindent compares every feedback-edge label with two unpruned references: exhaustive return search over states (vertex, upward-edge cost $0$ or $1$), excluding the tested edge, and full $D_0$ reachability followed by enumeration of all upward partners. All $2^{12}=4096$ loopless directed graphs on four strictly ordered vertices agree. A fixed suite of 26 complete model graphs, with $N=96$--1536, $q=7$, $\sigma R^2=24$, and $W=0,0.805,0.9,1.6$, tests 96,768 directed edges, including 3278 order-one and 4395 order-two labels; all agree with both references. Returned witnesses, retained edges and complete SCC partitions of $G_1,G_2$ also agree. Parameters, seeds, graph hashes and edge-wise comparisons are supplied. A negative-coordinate ceiling-cancellation regression is also included. These algorithm checks do not augment the physical ensembles in the figures.
 
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth]{figS6.pdf}
-\caption{Feedback-order witnesses. (a) Two-vertex order-one toy; green is the upward edge, gray is its downward return. (b) Four-vertex order-two toy; blue upward edges connect gray downward paths. Coordinates are schematic progress coordinates, not a spatial realization. The accompanying validation uses five toys and 80 induced subsets from the same five historical parents: 40 historical $N=64$ and 40 deterministic feedback-seeded $N=128$ subsets. Total positive feedback labels in the subsets are 107 of order one and 21 of order two; every edge agrees with the independent oracle.}\label{fig:classifier}
+\caption{Feedback-order witnesses. (a) Two-vertex order-one toy; green is the upward edge, gray is its downward return. (b) Four-vertex order-two toy; blue upward edges connect gray downward paths. Coordinates depict schematic progress along the backbone. The accompanying validation uses five toys and 80 induced subsets from the same five parent realizations: 40 $N=64$ and 40 deterministic feedback-seeded $N=128$ subsets. Total positive feedback labels in the subsets are 107 of order one and 21 of order two; every edge agrees with the independent bounded-cost search.}\label{fig:classifier}
 \end{figure}
 
 \subsection{Geometry of the largest low-order components}
-The mass and geometry cohort contains 784 graphs at seven $W$ values and four sizes. Figure~\ref{fig:geometry} extends main Fig.~3 at $W=0.805$. The penetration depth $d_{90}$ is the $\lceil0.9|C_{\max}|\rceil$th ordered distance from the downstream wall among vertices of the largest component. For $G_1$, median $d_{90}$ is $1.052$--$1.055R$ while $L$ changes by a factor of eight; the condition IQR endpoints span $0.995$--$1.129R$. For $G_2$, medians range from $2.16$ to $2.51R$, with IQR endpoints $1.98$--$3.26R$. Occasional deeper components remain, reaching $57.4R$ in the observed ensemble; no disappearance of this tail is inferred. The largest low-order components have major span of order $L$ and decreasing relative minor span. These observations concern the largest SCC; the interior contains many other recurrent components.
+The mass and geometry cohort contains 784 graphs at seven $W$ values and four sizes. Figure~\ref{fig:geometry} extends main Fig.~3 at $W=0.805$. The penetration depth $d_{90}$ is the $\lceil0.9|C_{\max}|\rceil$th ordered distance from the downstream wall among vertices of the largest component. For $G_1$, median $d_{90}$ is $1.052$--$1.055R$ while $L$ changes by a factor of eight; the condition IQR endpoints span $0.995$--$1.129R$. For $G_2$, medians range from $2.16$ to $2.51R$, with IQR endpoints $1.98$--$3.26R$. The distributions retain a long tail of deeper components, reaching $57.4R$ in the observed ensemble. The largest low-order components have major span of order $L$ and decreasing relative minor span. These observations concern the largest SCC; the interior contains many other recurrent components.
 
 \subsection{Direction-selection controls}
 The 24 matched $L/R=128$, $W=0.805$ bases are compared with orientations shifted by $\pi$ and $\pi/2$. The selected graphs are reconstructed from the shifted directions. Classification uses co-rotating progress coordinates: $y$ originally, $-y$ after reversal, and $-x$ after rotation. The downstream wall is therefore bottom, top or right, respectively. The localization contrast DLOC is largest-component membership in the downstream $2R$ strip minus membership in the opposite strip. Its positive typical values follow the direction under both transformations. All original and rotated $G_2$ contrasts are positive; 22 reversed values are positive and two are zero.
@@ -168,7 +193,7 @@ The 24 matched $L/R=128$, $W=0.805$ bases are compared with orientations shifted
 
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth]{figS7.pdf}
-\caption{Extended geometry and paired direction controls for the largest low-order SCCs, with $q=7$, $\sigma R^2=24$, $W=0.805$. (a) Individual $d_{90}/R$ values and median/IQR at $L/R=64,128,256,512$, with $n=24,96,24,16$. (b) Major/minor spans divided by $L$, median/IQR over the same graphs; solid/filled and dashed/open curves distinguish major/minor spans; circles/squares identify $G_1/G_2$. (c) Individual and median/IQR DLOC for 24 matched bases per orientation, evaluated in co-rotating coordinates. (d) Complete ECDFs of the depths in (a), including long tails; line styles distinguish sizes and circles/squares identify $G_1/G_2$. The subjects are the largest components, not all recurrent vertices.}\label{fig:geometry}
+\caption{Extended geometry and paired direction controls for the largest low-order SCCs, with $q=7$, $\sigma R^2=24$, $W=0.805$. (a) Individual $d_{90}/R$ values and median/IQR at $L/R=64,128,256,512$, with $n=24,96,24,16$. (b) Major/minor spans divided by $L$, median/IQR over the same graphs; solid/filled and dashed/open curves distinguish major/minor spans; circles/squares identify $G_1/G_2$. (c) Individual and median/IQR DLOC for 24 matched bases per orientation, evaluated in co-rotating coordinates. (d) Complete ECDFs of the depths in (a), including long tails; line styles distinguish sizes and circles/squares identify $G_1/G_2$. Geometry is measured for the largest component of each filtered graph.}\label{fig:geometry}
 \end{figure}
 
 \FloatBarrier
@@ -179,7 +204,7 @@ For the strict interior $I=\{i:4R<x_i<L-4R,\,4R<y_i<L-4R\}$, the graph $G_k[I]$ 
  f_{k,\mathrm{rec}}^{\rm int}=M_k^{\rm int}/|I|,\qquad
  \eta_k^{\rm int}=|C_k^{\rm int}|/M_k^{\rm int}.
 \end{equation}
-All 1,528 records have nonzero internal recurrent mass. At the graph level, $S_k^{\rm int}=f_{k,\mathrm{rec}}^{\rm int}\eta_k^{\rm int}$; the product of separate medians need not equal the median product.
+All 1,528 realizations have nonzero internal recurrent mass. At the graph level, $S_k^{\rm int}=f_{k,\mathrm{rec}}^{\rm int}\eta_k^{\rm int}$. Each factor is summarized separately, and $S_k^{\rm int}$ is summarized from the per-graph product.
 
 At $W=0.815$, median full-graph $S=0.985$ coexists with internal $G_2$ participation 0.138 and concentration 0.039, with approximately $8.0\times10^3$ nontrivial internal components. At $W=0.90$, participation and concentration medians are 0.946 and 0.996. Substantial internal low-order recurrence can thus remain distributed among many components even when the full graph is macroscopically strongly connected. These are comparisons of ensembles at distinct $W$.
 
@@ -212,11 +237,11 @@ $W$ & $n$ & $k$ & Parent fraction & Internal fraction & Retention \\
 \bottomrule\end{tabular}\end{table}
 
 \subsection{Boundary-deletion ensemble and width dependence}
-For width $\Delta$, retain $I_\Delta=\{i:\Delta<x_i<L-\Delta,\,\Delta<y_i<L-\Delta\}$. Feedback labels are assigned in the complete graph, and $G[I_\Delta]$, $G_1[I_\Delta]$, $G_2[I_\Delta]$ are then induced. Removed connections are not refilled, and the primary analysis retains the original labels. Fractions use the retained node count $|I_\Delta|$. The available eligible cohort contains 96,48,24,24 graphs at $W=0.805,0.815,0.86,0.90$, each at $\Delta/R=2,4,8$, giving 576 observations.
+For width $\Delta$, retain $I_\Delta=\{i:\Delta<x_i<L-\Delta,\,\Delta<y_i<L-\Delta\}$. Feedback labels are assigned in the complete graph, and $G[I_\Delta]$, $G_1[I_\Delta]$, $G_2[I_\Delta]$ are then induced. Deletion retains existing edges between surviving vertices together with their complete-graph labels. Fractions use the retained node count $|I_\Delta|$. The ensemble contains 96,48,24,24 graphs at $W=0.805,0.815,0.86,0.90$, each at $\Delta/R=2,4,8$, giving 576 observations.
 
 At $4R$, median paired differences are 0.548,0.929,0.845,0.029 in increasing $W$ order. Realization spreads and width dependence are retained in Fig.~\ref{fig:deletion} and the source tables. Near restoration, full interior connectivity exceeds the original order-two filtered sector by a large amount; at high disorder the separation is smaller because $G_2$ itself occupies much of the core. At $W=0.805$, the full-core median is 0.5512 and its observed range is 0.2458--0.9578, so the full ensemble has appreciable variation.
 
-The former main Fig.~4 representatives were selected in the earlier mass cohort by the smallest absolute deviation of original $S_2$ from its condition median, with graph-identifier tie-breaking. The updated main panel uses the complete $4R$ ensemble; the earlier representative selection is retained only as provenance. The source tables retain all eligible graphs and identify the representative positions separately. The clean $W=0$ source benchmark uses 24 graphs, with mean upstream-edge count 906.75 and sample standard deviation 12.42, versus fixed-$N$ theory 907.006. It measures clean feedback production, whereas the deletion ensemble measures interior recurrent organization under disorder.
+The $4R$ panel uses the full 192-graph ensemble. The clean $W=0$ source benchmark uses 24 graphs, with mean upstream-edge count 906.75 and sample standard deviation 12.42, versus fixed-$N$ theory 907.006. It measures clean feedback generation, whereas the deletion ensemble resolves interior recurrent organization under disorder.
 
 
 \begin{figure}[H]\centering
@@ -225,23 +250,27 @@ The former main Fig.~4 representatives were selected in the earlier mass cohort 
 \end{figure}
 
 \FloatBarrier
-\section{Matched intervention--filtration bridge}
-The same 48 accepted $\ell=4R$ original/reassigned pairs in main Fig.~2 are replayed with both frozen CSR edge hashes verified, at $W=0.79,0.80,0.81$ and 16 pairs per value. They reuse 16 geometry/orientation streams across $W$; pooled medians and IQRs are descriptive, with no independent-replicate significance test. Labels are classified separately in each complete original or reassigned graph before restriction to the same strict $4R$ core $I$. They are not the internally reclassified $H_k$.
+\section{Recurrent structure under spatial reassignment}
+The same 48 $\ell=4R$ original/reassigned pairs in main Fig.~2 are compared at $W=0.79,0.80,0.81$, with 16 pairs per value. They share 16 geometry/orientation streams across $W$, so pooled medians and IQRs describe dependent graph-condition observations. Labels are assigned separately in each complete original or reassigned graph before restriction to the same strict $4R$ core $I$. Thus $G_k[I]$ retains complete-graph labels, whereas $H_k$ uses orders recomputed after deletion.
 
-Median paired ratios $S_r/S_o,S_{1,r}/S_{1,o},S_{2,r}/S_{2,o}$ are $2.25\times10^{-4}$, $0.0158$, and $0.00947$, with IQRs $[1.45,4.84]\times10^{-4}$, $[0.0143,0.0168]$, and $[0.00814,0.0106]$, respectively. Original median $f_{1,\rm rec}^{\rm int}=0.0792$ (IQR $0.0743$--$0.0838$) and $f_{2,\rm rec}^{\rm int}=0.1096$ ($0.0980$--$0.1211$). Both become exactly zero in every reassigned core, and so does $S_k^{\rm int}$. Original median concentrations are $0.00117$ and $0.0220$; reassigned $\eta_k^{\rm int}$ is undefined because the recurrent mass is zero. It is not plotted as zero or used in a paired concentration ratio. Whole-graph $S_k$ includes singletons, whereas $S_k^{\rm int}$ counts a nontrivial recurrent component and can be zero.
+Median paired ratios $S_r/S_o,S_{1,r}/S_{1,o},S_{2,r}/S_{2,o}$ are $2.25\times10^{-4}$, $0.0158$, and $0.00947$, with IQRs $[1.45,4.84]\times10^{-4}$, $[0.0143,0.0168]$, and $[0.00814,0.0106]$, respectively. Original median $f_{1,\rm rec}^{\rm int}=0.0792$ (IQR $0.0743$--$0.0838$) and $f_{2,\rm rec}^{\rm int}=0.1096$ ($0.0980$--$0.1211$). Both become exactly zero in every reassigned core, and so does $S_k^{\rm int}$. Original median concentrations are $0.00117$ and $0.0220$; reassigned $\eta_k^{\rm int}$ is undefined because the recurrent mass is zero. Figure~\ref{fig:bridge}(c) shows the original concentrations and marks the reassigned populations as undefined; paired concentration ratios require nonzero recurrent mass. Whole-graph $S_k$ includes singletons, whereas $S_k^{\rm int}$ counts a nontrivial recurrent component and can be zero.
 
-Thus the intervention does not establish a participation-preserving loss of concentration. It directly eliminates the measured low-order interior recurrence, while the natural-$W$ scan distinguishes participation and concentration within nonempty recurrent populations. These are complementary structural observations; neither isolates a unique mediator or determines a minimum order for the full GSCC.
+Spatial reassignment removes the measured low-order interior recurrence itself. In the natural-$W$ scan, finite recurrent populations develop participation and concentration on distinct disorder scales. The two comparisons probe complementary aspects of recurrent organization: survival under spatial reassignment and concentration within the natural-disorder ensemble.
+
+
 
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth]{figS10.pdf}
-\caption{Matched intervention--filtration bridge on all 48 pairs, 16 at each $W=0.79,0.80,0.81$, with $q=7$, $\sigma R^2=24$, $L/R=128$ and $\ell=4R$. (a) Paired log ratios for full and filtered largest-SCC fractions. (b) Paired strict-core recurrent participation for orders one and two; $o,r$ denote original and reassigned. (c) Original concentrations; reassigned concentrations are explicitly undefined because every core has zero recurrent mass. Faint points/connectors are individual pairs; larger markers and bars are medians/IQRs. (d) Connected orientation correlation, median/IQR across the same pairs, using 512 prespecified source anchors per geometry and all targets in four radial bins. Original/reassigned states are distinguished by marker and line style. Baseline subtraction retains the nonzero common polarization. Shared streams make pooled spreads descriptive.}\label{fig:bridge}
+\caption{Recurrent response to spatial reassignment on all 48 pairs, 16 at each $W=0.79,0.80,0.81$, with $q=7$, $\sigma R^2=24$, $L/R=128$ and $\ell=4R$. (a) Paired log ratios for full and filtered largest-SCC fractions. (b) Paired strict-core recurrent participation for orders one and two; $o,r$ denote original and reassigned. (c) Original concentrations; reassigned concentrations are explicitly undefined because every core has zero recurrent mass. Faint points/connectors are individual pairs; larger markers and bars are medians/IQRs. (d) Connected orientation correlation, median/IQR across the same pairs, using 512 prespecified source anchors per geometry and all targets in four radial bins. Original/reassigned states are distinguished by marker and line style. Connected correlation subtracts the measured polarization baseline. Shared streams make pooled spreads descriptive.}\label{fig:bridge}
 \end{figure}
 
 \paragraph*{Orientation-correlation baseline.}
-For $P^2=|N^{-1}\sum_i e^{i\theta_i}|^2$, we report $C_\theta^{\rm conn}(r)=\langle\cos(\theta_i-\theta_j)\rangle_r-P^2$. The exact permutation expectation for distinct vertices of this same multiset is $(NP^2-1)/(N-1)$; its excess is also supplied. No random permutations or correlation-length fit is used. Source anchors are selected once with seed 2026100801 and reused for both states and all $W$. The radial bins are $(0,R],(R,2R],(2R,4R],(4R,8R]$. Original median connected values are $0.0006,0.0024,0.0013,0.0017$; reassigned values are $0.463,0.427,0.320,0.118$. These are sampled pair averages over fixed anchors, not exhaustive all-pairs estimates.
+For $P^2=|N^{-1}\sum_i e^{i\theta_i}|^2$, we report $C_\theta^{\rm conn}(r)=\langle\cos(\theta_i-\theta_j)\rangle_r-P^2$. The exact permutation expectation for distinct vertices of this same multiset is $(NP^2-1)/(N-1)$; its excess is also supplied. The permutation baseline is evaluated analytically. Source anchors are selected once with seed 2026100801 and reused for both states and all $W$. The radial bins are $(0,R],(R,2R],(2R,4R],(4R,8R]$. Original median connected values are $0.0006,0.0024,0.0013,0.0017$; reassigned values are $0.463,0.427,0.320,0.118$. These estimates average pair correlations over targets surrounding the fixed source anchors.
 
-\paragraph*{Predeclared graph controls.}
-Mean indegree stays exactly seven by edge conservation. Median indegree variance rises from $10.47$ to $23.71$ (IQRs $10.43$--$10.51$ and $23.27$--$24.48$), and the zero-indegree fraction from $0.00497$ to $0.0221$ ($0.00485$--$0.00512$ and $0.0205$--$0.0225$). The reciprocal-edge fraction, defined as the fraction of directed edges with a reverse edge, decreases from $0.0148$ to $0.000286$ ($0.0140$--$0.0157$ and $0.000266$--$0.000332$). The largest weakly connected fraction remains one in all graphs. Individual histograms and paired differences are supplied. These simultaneous joint-structure changes preclude attributing the connectivity loss uniquely to any one recurrence observable.
+\paragraph*{Indegree and reciprocity.}
+Mean indegree equals mean outdegree by edge conservation and is seven in these saturated-outdegree realizations. Median indegree variance rises from $10.47$ to $23.71$ (IQRs $10.43$--$10.51$ and $23.27$--$24.48$), and the zero-indegree fraction from $0.00497$ to $0.0221$ ($0.00485$--$0.00512$ and $0.0205$--$0.0225$). The reciprocal-edge fraction, defined as the fraction of directed edges with a reverse edge, decreases from $0.0148$ to $0.000286$ ($0.0140$--$0.0157$ and $0.000266$--$0.000332$). The largest weakly connected fraction remains one in all graphs. Individual histograms and paired differences are supplied. Spatial reassignment thus changes several joint structural properties while preserving positions and the one-point orientation population.
+
+
 
 \FloatBarrier
 \end{document}

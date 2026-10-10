@@ -1,6 +1,8 @@
 # Supplemental source tables
 
 Figures S1--S9 read the graph-level CSV tables in this directory.
+The current supplement also includes Figure S10, whose source tables are in
+`data/final_bridge`; `scripts/reproduce_supplemental.py` reproduces S1--S10.
 Green/circle and blue/square curves denote G1 and G2; full-graph results use magenta.
 All ensemble summaries use medians and IQRs. Counts describe overlapping cohorts.
 
