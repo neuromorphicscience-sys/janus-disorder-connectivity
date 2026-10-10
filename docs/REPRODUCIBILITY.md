@@ -1,5 +1,7 @@
 # Reproducibility workflow
 
+For the current manuscript, first download the [fixed submission snapshot](SUBMISSION_VERSION.md). The default branch may contain later work.
+
 ## Lightweight validation
 
     python scripts/validate_archive.py

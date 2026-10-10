@@ -19,3 +19,12 @@ supplemental/*.aux
 supplemental/*.log
 supplemental/*.out
 supplemental/*.pdf
+
+# Local classifier compilation and manuscript build products
+*.nbc
+*.nbi
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.log
+manuscript/*.out

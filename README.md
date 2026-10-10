@@ -2,6 +2,17 @@
 
 This is the public reproducibility repository for the manuscript “Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks.” It contains compact source data, frozen manifests, analysis code, and figure-reproduction scripts supporting the results reported in the manuscript. The model is a fixed-N spatial directed graph in which every source retains at most q neighbors ranked by projection on a quenched local direction.
 
+## Submission version — 2026-10-10
+
+For review of the current manuscript, use the fixed reproducibility snapshot
+[`v1.2.0-submission-20261010`](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/tree/v1.2.0-submission-20261010), or its
+[ZIP archive](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/archive/refs/tags/v1.2.0-submission-20261010.zip).
+This snapshot contains the data, code, classifier proof and validation cases, and
+all 14 reference figure PDFs corresponding to the submission. Do not use a
+moving branch or `releases/latest` to identify the submission data.
+[Version and integrity instructions](docs/SUBMISSION_VERSION.md) describe how
+to verify the download. The older `v1.0-submission` is a historical snapshot.
+
 ## Repository scope
 
 The repository provides:
@@ -19,7 +30,7 @@ The repository provides:
 
 ## Main physical result
 
-Quenched orientational disorder restores a giant strongly connected component while individual sources remain strongly direction selective. Reassigning the same orientation multiset over a fixed point cloud suppresses strong connectivity by orders of magnitude, showing that spatial assignment is causal. Near restoration, the largest low-order recurrent components form a direction-selected surface sector, while substantial low-order recurrence remains fragmented in the interior. Macroscopic mutual reachability therefore depends on the collective organization of recurrence, rather than its mere presence.
+Quenched orientational disorder restores a giant strongly connected component while individual sources remain strongly direction selective. Reassigning the same orientation multiset over a fixed point cloud suppresses strong connectivity by orders of magnitude, identifying spatial assignment as causally important for global reachability. The intervention also modifies joint structural statistics, including indegree heterogeneity and edge reciprocity, and therefore does not isolate a unique mediator of connectivity. Near restoration, the largest low-order recurrent components form a direction-selected surface sector, while substantial low-order recurrence remains fragmented in the interior. Macroscopic mutual reachability therefore depends on the collective organization of recurrence, rather than its mere presence.
 
 ## Repository structure
 

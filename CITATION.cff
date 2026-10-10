@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this repository, please cite the accompanying manuscript and this software record. Source code is licensed under BSD-3-Clause; data and documentation are licensed under CC-BY-4.0."
 type: software
 license: "BSD-3-Clause"
-license-url: "https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/blob/main/LICENSE"
+license-url: "https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/blob/v1.2.0-submission-20261010/LICENSE"
 title: "Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks"
 authors:
   - family-names: "Zhang"
@@ -11,6 +11,7 @@ authors:
     given-names: "Jialin"
   - family-names: "Wang"
     given-names: "Tianyu"
-version: "1.1.0"
-date-released: "2026-10-02"
+version: "1.2.0"
+date-released: "2026-10-10"
 repository-code: "https://github.com/neuromorphicscience-sys/janus-disorder-connectivity"
+url: "https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/tree/v1.2.0-submission-20261010"
