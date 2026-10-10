@@ -1,8 +1,12 @@
 # Submission reproducibility snapshot — 2026-10-10
 
-Version: `v1.2.0-submission-20261010`. This version corresponds to the manuscript **Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks**, with the clean-limit benchmark wording, intervention mediator qualification, 11-page Supplemental Material, and classifier-bound proof/full-graph validation.
+Version: `v1.2.0-submission-20261010`.
 
-Use [this tagged snapshot](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/tree/v1.2.0-submission-20261010) or [download its ZIP](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/archive/refs/tags/v1.2.0-submission-20261010.zip). The submission uses the data and algorithms frozen here. Subsequent development on `main` is a separate version. The old `v1.0-submission` tag predates the present submission; retain it only for historical provenance. Do not move or reuse submission tags. Corrections require a new version.
+Authoritative data/code commit: `a1869578c4fbabf61fdb863aabb1dc590e646cc6`.
+
+[Download by full commit SHA](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/archive/a1869578c4fbabf61fdb863aabb1dc590e646cc6.zip). This version corresponds to the manuscript **Disorder-Restored Strong Connectivity in Degree-Limited Spatial Networks**, with the clean-limit benchmark wording, intervention mediator qualification, 11-page Supplemental Material, and classifier-bound proof/full-graph validation.
+
+Use [this tagged snapshot](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/tree/a1869578c4fbabf61fdb863aabb1dc590e646cc6) or [download its ZIP](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/archive/a1869578c4fbabf61fdb863aabb1dc590e646cc6.zip). The submission uses the data and algorithms frozen here. Subsequent development on `main` is a separate version. The old `v1.0-submission` tag predates the present submission; retain it only for historical provenance. Do not move or reuse submission tags. Corrections require a new version.
 
 ## Scope and integrity
 
@@ -21,3 +25,5 @@ python -m pytest
 The full-graph command generates only the fixed algorithm-validation cases. Figure reproduction uses the supplied source tables and does not require replaying the large physical ensembles. Generated outputs belong under `outputs/` and `figures/generated/` and do not alter the submission snapshot.
 
 The manuscript's data links identify the snapshot by its full commit SHA; the tag is a readable version label. Use the SHA-addressed archive if a tag and a commit ever disagree. The authors' final TeX/PDF files and their checksums are supplied separately from this data/code snapshot.
+
+`SUBMISSION_SNAPSHOT.json` at the repository root records this full commit and the final author-document checksums. The main PDF is supplied with the journal submission; the public SI PDF is also synchronized. Updating these navigation records does not change the frozen data/code commit or tag.

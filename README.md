@@ -5,12 +5,14 @@ This is the public reproducibility repository for the manuscript “Disorder-Res
 ## Submission version — 2026-10-10
 
 For review of the current manuscript, use the fixed reproducibility snapshot
-[`v1.2.0-submission-20261010`](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/tree/v1.2.0-submission-20261010), or its
-[ZIP archive](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/archive/refs/tags/v1.2.0-submission-20261010.zip).
+[`v1.2.0-submission-20261010`](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/tree/a1869578c4fbabf61fdb863aabb1dc590e646cc6), or its
+[ZIP archive](https://github.com/neuromorphicscience-sys/janus-disorder-connectivity/archive/a1869578c4fbabf61fdb863aabb1dc590e646cc6.zip).
 This snapshot contains the data, code, classifier proof and validation cases, and
-all 14 reference figure PDFs corresponding to the submission. Do not use a
+all 14 reference figure PDFs corresponding to the submission.
+Full snapshot commit: `a1869578c4fbabf61fdb863aabb1dc590e646cc6`. Do not use a
 moving branch or `releases/latest` to identify the submission data.
-[Version and integrity instructions](docs/SUBMISSION_VERSION.md) describe how
+[Version and integrity instructions](docs/SUBMISSION_VERSION.md) and
+[submission document checksums](SUBMISSION_SNAPSHOT.json) describe how
 to verify the download. The older `v1.0-submission` is a historical snapshot.
 
 ## Repository scope
